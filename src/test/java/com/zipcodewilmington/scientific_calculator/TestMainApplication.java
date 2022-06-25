@@ -30,39 +30,46 @@ public class TestMainApplication {
     @Test
     void fiveMinusTwoEqualsThree(){
         test calculator = new BasicFunctions();
-        assertEquals(3, BasicFunctions.sub(5.0, 2.0));
+        assertEquals(3.0, BasicFunctions.sub(5.0, 2.0));
     }
 
     @Test
     void tenMinusTwoEqualsEight(){
         test calculator = new BasicFunctions();
-        assertEquals(2, BasicFunctions.sub(10.0, 8.0));
+        assertEquals(2.0, BasicFunctions.sub(10.0, 8.0));
     }
 
     //Multiplication Tests
     @Test
     void fiveTimesTwoEqualsTen(){
         test calculator = new BasicFunctions();
-        assertEquals(10, BasicFunctions.multiply(5.0, 2.0));
+        assertEquals(10.0, BasicFunctions.multiply(5.0, 2.0));
     }
 
     @Test
     void eightTimesThreeEqualsTwentyFour(){
         test calculator = new BasicFunctions();
-        assertEquals(24, BasicFunctions.multiply(8.0, 3.0));
+        assertEquals(24.0, BasicFunctions.multiply(8.0, 3.0));
     }
 
     //Division Tests
     @Test
     void eightDividedByTwoEqualsFour(){
         test calculator = new BasicFunctions();
-        asserEquals(4, BasicFunctions.divide(8.0, 4.0));
+        asserEquals(4.0, BasicFunctions.divide(8.0, 4.0));
     }
 
     @Test
     void eightDividedBySeven(){
         test calculator = new BasicFunctions();
         asserEquals(, BasicFunctions.divide(8.0, 7.0));
+    }
+
+    //Squaring Tests
+    @Test
+    void squareSix(){
+        test calculator = new BasicFunctions();
+        asserEquals(36.0, BasicFunctions.square(36.0));
     }
 
 
