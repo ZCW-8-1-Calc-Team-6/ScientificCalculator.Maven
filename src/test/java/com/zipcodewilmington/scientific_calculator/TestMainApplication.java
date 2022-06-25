@@ -18,12 +18,12 @@ public class TestMainApplication {
 //    @Test
 //    void twoPlusTwoEqualsFour(){
 //        BasicFunctions calculator = new BasicFunctions();
-//        assertEquals(4, BasicFunctions.add(2.0, 2.0));
+//        assertEquals(4.0, BasicFunctions.add(2.0, 2.0));
 //    }
 //    @Test
 //    void fivePlusTwoEqualsSeven(){
 //        BasicFunctions calculator = new BasicFunctions();
-//        assertEquals(7, BasicFunctions.add(5.0, 2.0));
+//        assertEquals(7.0, BasicFunctions.add(5.0, 2.0));
 //    }
 //
 //    //Subtraction Tests
@@ -90,6 +90,18 @@ public class TestMainApplication {
 //    void varExpOneHundred(){
 //        BasicFunctions calculator = new BasicFunctions();
 //        assertEquals(10.0, BasicFunctions.exp(100.0));
+//    }
+
+    //    @Test
+//    void inverseNum(){
+//        BasicFunctions calculator = new BasicFunctions();
+//        assertEquals(-5.0, BasicFunctions.inverseNum(5.0));
+//    }
+
+    //    @Test
+//    void inverseSign(){
+//        BasicFunctions calculator = new BasicFunctions();
+//        assertEquals(-100.0, BasicFunctions.inverseSign(100.0));
 //    }
 
     @Test
