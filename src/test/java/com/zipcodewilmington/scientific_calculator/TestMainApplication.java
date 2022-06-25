@@ -99,15 +99,32 @@ public class TestMainApplication {
     }
 
     @Test
+    void sinTest2() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(0.17364817766693033, ScientificFunctions.sin(10.0, "degrees"));
+    }
+
+    @Test
     void cosTest1() {
         ScientificFunctions calculator = new ScientificFunctions();
         assertEquals(0.9961946980917455, ScientificFunctions.cos(5.0,"degrees"));
     }
 
     @Test
+    void cosTest2() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(0.9902680687415704, ScientificFunctions.cos(8.0,"degrees"));
+    }
+
+    @Test
     void tanTest1() {
         ScientificFunctions calculator = new ScientificFunctions();
         assertEquals(0.08748866352592401, ScientificFunctions.tan(5.0,"degrees"));
+    }
+    @Test
+    void tanTest2() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(0.1227845609029046, ScientificFunctions.tan(7.0,"degrees"));
     }
 
     @Test
@@ -117,9 +134,21 @@ public class TestMainApplication {
     }
 
     @Test
+    void asinTest2() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(1.1197695149986342, ScientificFunctions.asin(0.9,""));
+    }
+
+    @Test
     void acosTest1() {
         ScientificFunctions calculator = new ScientificFunctions();
         assertEquals(0.0, ScientificFunctions.acos(1.0,""));
+    }
+
+    @Test
+    void acosTest2() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(1.0471975511965979, ScientificFunctions.acos(0.5,""));
     }
 
     @Test
@@ -129,9 +158,21 @@ public class TestMainApplication {
     }
 
     @Test
+    void atanTest2() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(0.4636476090008061, ScientificFunctions.atan(0.5,""));
+    }
+
+    @Test
     void logTest1() {
         ScientificFunctions calculator = new ScientificFunctions();
         assertEquals(1, ScientificFunctions.log(10));
+    }
+
+    @Test
+    void logTest2() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(2, ScientificFunctions.log(100));
     }
 
     @Test
@@ -141,9 +182,21 @@ public class TestMainApplication {
     }
 
     @Test
+    void inverseLogTest2() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(15848.93192461114, ScientificFunctions.inverseLog(4.2));
+    }
+
+    @Test
     void naturalLogTest1() {
         ScientificFunctions calculator = new ScientificFunctions();
         assertEquals(0.0, ScientificFunctions.naturalLog(1));
+    }
+
+    @Test
+    void naturalLogTest2() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(0.6931471805599453, ScientificFunctions.naturalLog(2));
     }
 
     @Test
@@ -153,9 +206,21 @@ public class TestMainApplication {
     }
 
     @Test
+    void inverseNatLogTest2() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(148.41315910257657, ScientificFunctions.inverseNaturalLog(5));
+    }
+
+    @Test
     void factorialTest1() {
         ScientificFunctions calculator = new ScientificFunctions();
         assertEquals(5040.0, ScientificFunctions.factorial(7));
+    }
+
+    @Test
+    void factorialTest2() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(2, ScientificFunctions.factorial(2));
     }
 
 }
