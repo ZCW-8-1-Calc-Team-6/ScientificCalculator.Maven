@@ -134,4 +134,28 @@ public class TestMainApplication {
         assertEquals(1, ScientificFunctions.log(10));
     }
 
+    @Test
+    void inverseLogTest1() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(10.0, ScientificFunctions.inverseLog(1));
+    }
+
+    @Test
+    void naturalLogTest1() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(0.0, ScientificFunctions.naturalLog(1));
+    }
+
+    @Test
+    void inverseNatLogTest1() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(7.3890560989306495, ScientificFunctions.inverseNaturalLog(2));
+    }
+
+    @Test
+    void factorialTest1() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(5040.0, ScientificFunctions.factorial(7));
+    }
+
 }
