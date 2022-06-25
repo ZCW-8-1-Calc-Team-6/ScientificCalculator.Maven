@@ -72,5 +72,17 @@ public class TestMainApplication {
         asserEquals(36.0, BasicFunctions.square(36.0));
     }
 
+    @Test
+    void squareTen(){
+        BasicFunctions calculator = new BasicFunctions();
+        asserEquals(100.0, BasicFunctions.square(10.0));
+    }
+
+    //Sqrt Tests
+    @Test
+    void sqrtOneHundred(){
+        BasicFunctions calculator = new BasicFunctions();
+        asserEquals(10.0, BasicFunctions.square(100.0));
+    }
 
 }
