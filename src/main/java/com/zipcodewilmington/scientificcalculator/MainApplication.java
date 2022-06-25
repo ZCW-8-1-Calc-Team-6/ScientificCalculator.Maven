@@ -22,7 +22,7 @@ public class MainApplication implements ActionListener {
     //
     // some operators or functions of the calculator only need one operand and
     //      that will be stored in operandLeft
-    String operandLeft = "";
+    String operandLeft = "0";
     String operandRight = "";
     String operator = "";
     String units = "degrees";
@@ -33,9 +33,10 @@ public class MainApplication implements ActionListener {
         display = new JTextField(20);
         display.setEditable(false); // limit interaction to button clicks
 
-        JButton buttonEquals, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply, buttonDivide, buttonSin;
+        JButton buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply, buttonDivide, buttonSin;
 
         buttonEquals = new JButton("=");
+        buttonClear = new JButton("C");
         buttonZero = new JButton("0");
         buttonOne = new JButton("1");
         buttonTwo = new JButton("2");
@@ -56,6 +57,7 @@ public class MainApplication implements ActionListener {
         JPanel p = new JPanel();
         p.add(display);
         p.add(buttonEquals);
+        p.add(buttonClear);
         p.add(buttonZero);
         p.add(buttonOne);
         p.add(buttonTwo);
@@ -73,6 +75,8 @@ public class MainApplication implements ActionListener {
         p.add(buttonSin);
 
         buttonEquals.addActionListener(this);
+        buttonClear.addActionListener(this);
+        buttonZero.addActionListener(this);
         buttonOne.addActionListener(this);
         buttonTwo.addActionListener(this);
         buttonThree.addActionListener(this);
@@ -93,6 +97,7 @@ public class MainApplication implements ActionListener {
         f.add(p);
         //f.pack(); may be used instead of setSize? might want to look into layouts
         f.setSize(800, 400);
+        display.setText(this.operandLeft);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null); // spawns window centered
         //f.setResizable(false);
@@ -121,26 +126,32 @@ public class MainApplication implements ActionListener {
         }
     }
 
+    public String getTextField() {
+        return this.display.getText();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String in = e.getActionCommand();
 
         // this will call methods in two files
-        // based on what operator was selected on the calculator panel
+        // based on what operator was clicked on the calculator panel
 
-        // basic functions
-        if(in.charAt(0) == '=') {
-            display.setText(this.units);
+        if (in.charAt(0) >= '0' && in.charAt(0) <= '9'){
+            if (this.getTextField().equals("0") && in.charAt(0) > '0') {
+                operandLeft = in;
+                display.setText(in);
+            }
+            else if (!this.getTextField().equals("0")) {
+                operandLeft += in;
+                display.setText(operandLeft);
+            }
         }
-        else if(in.charAt(0) == '2') {
-            this.switchUnitsMode();
-        }
-        // scientific functions
-        else if(in.charAt(0) == '1') {
-            display.setText("spaghetti");
-        }
-        else if(in.charAt(0) == 's') {
-            display.setText(String.valueOf(ScientificFunctions.sin(4.0, units)));
+        else if (in.charAt(0) == 'C') { // clear selected
+            operator = "";
+            operandLeft = "0";
+            operandRight = "";
+            display.setText(operandLeft);
         }
     }
 }
