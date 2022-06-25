@@ -1,8 +1,6 @@
 package com.zipcodewilmington.scientificcalculator;
 
 public class ScientificFunctions {
-    // Ryan adds methods for scientific functions
-    // e.g. sin cos etc.
 
     public static double sin(double x, String units) {
         if (units.equals("degrees")) {
