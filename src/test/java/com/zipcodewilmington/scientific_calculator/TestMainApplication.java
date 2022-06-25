@@ -18,51 +18,51 @@ public class TestMainApplication {
     @Test
     void twoPlusTwoEqualsFour(){
         test calculator = new BasicFunctions();
-        assertEquals(4, BasicFunctions.add(2, 2));
+        assertEquals(4, BasicFunctions.add(2.0, 2.0));
     }
     @Test
     void fivePlusTwoEqualsSeven(){
         test calculator = new BasicFunctions();
-        assertEquals(7, BasicFunctions.add(5, 2));
+        assertEquals(7, BasicFunctions.add(5.0, 2.0));
     }
 
     //Subtraction Tests
     @Test
     void fiveMinusTwoEqualsThree(){
         test calculator = new BasicFunctions();
-        assertEquals(3, BasicFunctions.sub(5, 2));
+        assertEquals(3, BasicFunctions.sub(5.0, 2.0));
     }
 
     @Test
     void tenMinusTwoEqualsEight(){
         test calculator = new BasicFunctions();
-        assertEquals(2, BasicFunctions.sub(10, 8));
+        assertEquals(2, BasicFunctions.sub(10.0, 8.0));
     }
 
     //Multiplication Tests
     @Test
     void fiveTimesTwoEqualsTen(){
         test calculator = new BasicFunctions();
-        assertEquals(10, BasicFunctions.multiply(5, 2));
+        assertEquals(10, BasicFunctions.multiply(5.0, 2.0));
     }
 
     @Test
     void eightTimesThreeEqualsTwentyFour(){
         test calculator = new BasicFunctions();
-        assertEquals(24, BasicFunctions.multiply(8, 3));
+        assertEquals(24, BasicFunctions.multiply(8.0, 3.0));
     }
 
     //Division Tests
     @Test
     void eightDividedByTwoEqualsFour(){
         test calculator = new BasicFunctions();
-        asserEquals(4, BasicFunctions.divide(8, 4));
+        asserEquals(4, BasicFunctions.divide(8.0, 4.0));
     }
 
     @Test
     void eightDividedBySeven(){
         test calculator = new BasicFunctions();
-        asserEquals(, BasicFunctions.divide(8, 7));
+        asserEquals(, BasicFunctions.divide(8.0, 7.0));
     }
 
 
