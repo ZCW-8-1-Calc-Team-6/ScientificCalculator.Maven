@@ -1,7 +1,11 @@
 package com.zipcodewilmington.scientific_calculator;
+<<<<<<< HEAD
 import com.zipcodewilmington.scientificcalculator.BasicFunctions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+=======
+import javax.swing.*;
+>>>>>>> 79e78b5a18c5712ac03860679a2dbc72bc5c1ca9
 
 /**
  * Created by leon on 2/9/18.
