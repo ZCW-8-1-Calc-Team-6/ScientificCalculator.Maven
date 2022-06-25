@@ -79,6 +79,21 @@ public class MainApplication implements ActionListener {
         p.add(buttonSin);
 
         buttonEquals.addActionListener(theCalc);
+        buttonOne.addActionListener(theCalc);
+        buttonTwo.addActionListener(theCalc);
+        buttonThree.addActionListener(theCalc);
+        buttonFour.addActionListener(theCalc);
+        buttonFive.addActionListener(theCalc);
+        buttonSix.addActionListener(theCalc);
+        buttonSeven.addActionListener(theCalc);
+        buttonEight.addActionListener(theCalc);
+        buttonNine.addActionListener(theCalc);
+        buttonPlus.addActionListener(theCalc);
+        buttonMinus.addActionListener(theCalc);
+        buttonMultiply.addActionListener(theCalc);
+        buttonDivide.addActionListener(theCalc);
+        buttonSin.addActionListener(theCalc);
+
 
         p.setBackground(new Color(186, 142, 191));
 
@@ -86,6 +101,7 @@ public class MainApplication implements ActionListener {
         f.add(p);
         //f.pack(); may be used instead of setSize? might want to look into layouts
         f.setSize(800, 400);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null);
         f.setResizable(false);
         f.setVisible(true);
