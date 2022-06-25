@@ -85,4 +85,11 @@ public class TestMainApplication {
         asserEquals(10.0, BasicFunctions.square(100.0));
     }
 
+    //Variable exponentiation
+    @Test
+    void varExpOneHundred(){
+        BasicFunctions calculator = new BasicFunctions();
+        asserEquals(10.0, BasicFunctions.square(100.0));
+    }
+
 }
