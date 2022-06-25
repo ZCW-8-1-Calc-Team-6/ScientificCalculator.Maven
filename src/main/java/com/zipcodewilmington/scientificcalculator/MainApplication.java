@@ -114,10 +114,10 @@ public class MainApplication implements ActionListener {
 
     public void switchUnitsMode(String s) {
         if (s.equals("degrees")) {
-            this.units = "radians";
+            this.units = "degrees";
         }
         else {
-            this.units = "degrees";
+            this.units = "radians";
         }
     }
 
