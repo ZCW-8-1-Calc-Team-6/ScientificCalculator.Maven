@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 public class MainApplication implements ActionListener {
 
     static JFrame f;
-    static JTextField l;
+    static JTextField display;
 
     // operands and operators
     //
@@ -35,8 +35,8 @@ public class MainApplication implements ActionListener {
 
         // Ryan will work here on GUI
         f = new JFrame("Scientific Calculator");
-        l = new JTextField();
-        l.setEditable(false); // limit interaction to button clicks
+        display = new JTextField(20);
+        display.setEditable(false); // limit interaction to button clicks
 
         MainApplication theCalc = new MainApplication();
 
@@ -61,6 +61,7 @@ public class MainApplication implements ActionListener {
 
         // panel setup
         JPanel p = new JPanel();
+        p.add(display);
         p.add(buttonEquals);
         p.add(buttonZero);
         p.add(buttonOne);
@@ -96,25 +97,25 @@ public class MainApplication implements ActionListener {
 
 
         p.setBackground(new Color(186, 142, 191));
-
-
         f.add(p);
         //f.pack(); may be used instead of setSize? might want to look into layouts
         f.setSize(800, 400);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null);
-        f.setResizable(false);
+        //f.setResizable(false);
         f.setVisible(true);
 
         // this will call methods in two files
-        // based on what operator was selected <- switch case will go here
+        // based on what operator was selected on the calculator panel
             // basic functions
             // scientific functions
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String in = e.getActionCommand();
+
+        display.setText(in);
 
     }
 }
