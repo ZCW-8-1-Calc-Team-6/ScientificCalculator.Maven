@@ -40,13 +40,43 @@ public class MainApplication implements ActionListener {
 
         MainApplication theCalc = new MainApplication();
 
-        JButton buttonEquals;
+        JButton buttonEquals, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply, buttonDivide, buttonSin;
 
         buttonEquals = new JButton("=");
+        buttonZero = new JButton("0");
+        buttonOne = new JButton("1");
+        buttonTwo = new JButton("2");
+        buttonThree = new JButton("3");
+        buttonFour = new JButton("4");
+        buttonFive = new JButton("5");
+        buttonSix = new JButton("6");
+        buttonSeven = new JButton("7");
+        buttonEight = new JButton("8");
+        buttonNine = new JButton("9");
+        buttonPlus = new JButton("+");
+        buttonMinus = new JButton("-");
+        buttonMultiply = new JButton("*");
+        buttonDivide = new JButton("/");
+        buttonSin = new JButton("sin()");
 
+        // panel setup
         JPanel p = new JPanel();
-
         p.add(buttonEquals);
+        p.add(buttonZero);
+        p.add(buttonOne);
+        p.add(buttonTwo);
+        p.add(buttonThree);
+        p.add(buttonFour);
+        p.add(buttonFive);
+        p.add(buttonSix);
+        p.add(buttonSeven);
+        p.add(buttonEight);
+        p.add(buttonNine);
+        p.add(buttonPlus);
+        p.add(buttonMinus);
+        p.add(buttonMultiply);
+        p.add(buttonDivide);
+        p.add(buttonSin);
 
         buttonEquals.addActionListener(theCalc);
 
@@ -54,7 +84,7 @@ public class MainApplication implements ActionListener {
 
 
         f.add(p);
-        //f.pack(); may be used instead of setsize? might want to look into layouts
+        //f.pack(); may be used instead of setSize? might want to look into layouts
         f.setSize(800, 400);
         f.setLocationRelativeTo(null);
         f.setResizable(false);
