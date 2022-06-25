@@ -24,7 +24,7 @@ public class TestMainApplication {
 
     //Subtraction Tests
     @Test
-    void fiveMinusTwoEqualsSeven(){
+    void fiveMinusTwoEqualsThree(){
         test calculator = new BasicFunctions();
         assertEquals(3, BasicFunctions.sub(5, 2));
     }
@@ -33,5 +33,18 @@ public class TestMainApplication {
     void tenMinusTwoEqualsEight(){
         test calculator = new BasicFunctions();
         assertEquals(2, BasicFunctions.sub(10, 8));
+    }
+
+    //Multiplication Tests
+    @Test
+    void fiveTimesTwoEqualsTen(){
+        test calculator = new BasicFunctions();
+        assertEquals(10, BasicFunctions.multiply(5, 2));
+    }
+
+    @Test
+    void eightTimesThreeEqualsTwentyFour(){
+        test calculator = new BasicFunctions();
+        assertEquals(24, BasicFunctions.multiply(8, 3));
     }
 }
