@@ -95,7 +95,13 @@ public class TestMainApplication {
     @Test
     void sin() {
         ScientificFunctions calculator = new ScientificFunctions();
-        assertEquals(0.087155742747658, ScientificFunctions.sin(5));
+        assertEquals(0.08715574274765817, ScientificFunctions.sin(5.0, "degrees"));
+    }
+
+    @Test
+    void cos() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(0.9961946980917455, ScientificFunctions.cos(5.0,"degrees"));
     }
 
 }
