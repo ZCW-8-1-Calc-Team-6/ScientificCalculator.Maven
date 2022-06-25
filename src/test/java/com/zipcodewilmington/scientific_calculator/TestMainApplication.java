@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 public class TestMainApplication {
 
     // all tests here
+
+    //Addition Tests
     @Test
     void twoPlusTwoEqualsFour(){
         test calculator = new BasicFunctions();
@@ -18,5 +20,18 @@ public class TestMainApplication {
     void fivePlusTwoEqualsSeven(){
         test calculator = new BasicFunctions();
         assertEquals(7, BasicFunctions.add(5, 2));
+    }
+
+    //Subtraction Tests
+    @Test
+    void fiveMinusTwoEqualsSeven(){
+        test calculator = new BasicFunctions();
+        assertEquals(3, BasicFunctions.sub(5, 2));
+    }
+
+    @Test
+    void tenMinusTwoEqualsEight(){
+        test calculator = new BasicFunctions();
+        assertEquals(2, BasicFunctions.sub(10, 8));
     }
 }
