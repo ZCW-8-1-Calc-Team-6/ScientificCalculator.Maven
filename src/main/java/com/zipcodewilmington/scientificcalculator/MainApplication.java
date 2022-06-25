@@ -1,4 +1,6 @@
 package com.zipcodewilmington.scientificcalculator;
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,8 +11,8 @@ import java.awt.event.ActionListener;
  */
 public class MainApplication implements ActionListener {
 
-    static JFrame f;
-    static JTextField display;
+    JFrame f;
+    JTextField display;
 
     // operands and operators
     //
@@ -20,25 +22,16 @@ public class MainApplication implements ActionListener {
     //
     // some operators or functions of the calculator only need one operand and
     //      that will be stored in operandLeft
-    String operandLeft;
-    String operandRight;
-    String operator;
+    String operandLeft = "";
+    String operandRight = "";
+    String operator = "";
+    String units = "degrees";
 
-    // constructor for MainApplication
-    public void calculator() {
-        operandLeft = "";
-        operandRight = "";
-        operator = "";
-    }
-
-    public static void main(String[] args) {
-
+    public MainApplication () {
         // Ryan will work here on GUI
         f = new JFrame("Scientific Calculator");
         display = new JTextField(20);
         display.setEditable(false); // limit interaction to button clicks
-
-        MainApplication theCalc = new MainApplication();
 
         JButton buttonEquals, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply, buttonDivide, buttonSin;
 
@@ -79,21 +72,21 @@ public class MainApplication implements ActionListener {
         p.add(buttonDivide);
         p.add(buttonSin);
 
-        buttonEquals.addActionListener(theCalc);
-        buttonOne.addActionListener(theCalc);
-        buttonTwo.addActionListener(theCalc);
-        buttonThree.addActionListener(theCalc);
-        buttonFour.addActionListener(theCalc);
-        buttonFive.addActionListener(theCalc);
-        buttonSix.addActionListener(theCalc);
-        buttonSeven.addActionListener(theCalc);
-        buttonEight.addActionListener(theCalc);
-        buttonNine.addActionListener(theCalc);
-        buttonPlus.addActionListener(theCalc);
-        buttonMinus.addActionListener(theCalc);
-        buttonMultiply.addActionListener(theCalc);
-        buttonDivide.addActionListener(theCalc);
-        buttonSin.addActionListener(theCalc);
+        buttonEquals.addActionListener(this);
+        buttonOne.addActionListener(this);
+        buttonTwo.addActionListener(this);
+        buttonThree.addActionListener(this);
+        buttonFour.addActionListener(this);
+        buttonFive.addActionListener(this);
+        buttonSix.addActionListener(this);
+        buttonSeven.addActionListener(this);
+        buttonEight.addActionListener(this);
+        buttonNine.addActionListener(this);
+        buttonPlus.addActionListener(this);
+        buttonMinus.addActionListener(this);
+        buttonMultiply.addActionListener(this);
+        buttonDivide.addActionListener(this);
+        buttonSin.addActionListener(this);
 
 
         p.setBackground(new Color(186, 142, 191));
@@ -101,21 +94,53 @@ public class MainApplication implements ActionListener {
         //f.pack(); may be used instead of setSize? might want to look into layouts
         f.setSize(800, 400);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setLocationRelativeTo(null);
+        f.setLocationRelativeTo(null); // spawns window centered
         //f.setResizable(false);
         f.setVisible(true);
+    }
 
-        // this will call methods in two files
-        // based on what operator was selected on the calculator panel
-            // basic functions
-            // scientific functions
+    public static void main(String[] args) {
+        new MainApplication();
+    }
+
+    public void switchUnitsMode() {
+        if (this.units.equals("degrees")) {
+            this.units = "radians";
+        }
+        else {
+            this.units = "degrees";
+        }
+    }
+
+    public void switchUnitsMode(String s) {
+        if (s.equals("degrees")) {
+            this.units = "radians";
+        }
+        else {
+            this.units = "degrees";
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String in = e.getActionCommand();
 
-        display.setText(in);
+        // this will call methods in two files
+        // based on what operator was selected on the calculator panel
 
+        // basic functions
+        if(in.charAt(0) == '=') {
+            display.setText(this.units);
+        }
+        else if(in.charAt(0) == '2') {
+            this.switchUnitsMode();
+        }
+        // scientific functions
+        else if(in.charAt(0) == '1') {
+            display.setText("spaghetti");
+        }
+        else if(in.charAt(0) == 's') {
+            display.setText(String.valueOf(ScientificFunctions.sin(4.0, units)));
+        }
     }
 }
