@@ -110,5 +110,28 @@ public class TestMainApplication {
         assertEquals(0.08748866352592401, ScientificFunctions.tan(5.0,"degrees"));
     }
 
+    @Test
+    void asinTest1() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(1.5707963267948966, ScientificFunctions.asin(1.0,""));
+    }
+
+    @Test
+    void acosTest1() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(0.0, ScientificFunctions.acos(1.0,""));
+    }
+
+    @Test
+    void atanTest1() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(0.7853981633974483, ScientificFunctions.atan(1.0,""));
+    }
+
+    @Test
+    void logTest1() {
+        ScientificFunctions calculator = new ScientificFunctions();
+        assertEquals(1, ScientificFunctions.log(10));
+    }
 
 }
