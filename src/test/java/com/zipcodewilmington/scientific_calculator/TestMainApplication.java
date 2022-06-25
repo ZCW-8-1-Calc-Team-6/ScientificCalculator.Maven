@@ -56,40 +56,40 @@ public class TestMainApplication {
 //    @Test
 //    void eightDividedByTwoEqualsFour(){
 //        BasicFunctions calculator = new BasicFunctions();
-//        asserEquals(4.0, BasicFunctions.divide(8.0, 4.0));
+//        assertEquals(4.0, BasicFunctions.divide(8.0, 4.0));
 //    }
 //
 //    @Test
 //    void eightDividedBySeven(){
 //        BasicFunctions calculator = new BasicFunctions();
-//        asserEquals(0, BasicFunctions.divide(8.0, 7.0));
+//        assertEquals(0, BasicFunctions.divide(8.0, 7.0));
 //    }
 //
 //    //Squaring Tests
 //    @Test
 //    void squareSix(){
 //        BasicFunctions calculator = new BasicFunctions();
-//        asserEquals(36.0, BasicFunctions.square(36.0));
+//        assertEquals(36.0, BasicFunctions.square(36.0));
 //    }
 //
 //    @Test
 //    void squareTen(){
 //        BasicFunctions calculator = new BasicFunctions();
-//        asserEquals(100.0, BasicFunctions.square(10.0));
+//        assertEquals(100.0, BasicFunctions.square(10.0));
 //    }
 //
 //    //Sqrt Tests
 //    @Test
 //    void sqrtOneHundred(){
 //        BasicFunctions calculator = new BasicFunctions();
-//        asserEquals(10.0, BasicFunctions.sqrt(100.0));
+//        assertEquals(10.0, BasicFunctions.sqrt(100.0));
 //    }
 //
 //    //Variable exponentiation
 //    @Test
 //    void varExpOneHundred(){
 //        BasicFunctions calculator = new BasicFunctions();
-//        asserEquals(10.0, BasicFunctions.exp(100.0));
+//        assertEquals(10.0, BasicFunctions.exp(100.0));
 //    }
 
     @Test
