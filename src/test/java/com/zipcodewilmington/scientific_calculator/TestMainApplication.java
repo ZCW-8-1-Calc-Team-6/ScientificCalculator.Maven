@@ -47,4 +47,19 @@ public class TestMainApplication {
         test calculator = new BasicFunctions();
         assertEquals(24, BasicFunctions.multiply(8, 3));
     }
+
+    //Division Tests
+    @Test
+    void eightDividedByTwoEqualsFour(){
+        test calculator = new BasicFunctions();
+        asserEquals(4, BasicFunctions.divide(8, 4));
+    }
+
+    @Test
+    void eightDividedBySeven(){
+        test calculator = new BasicFunctions();
+        asserEquals(, BasicFunctions.divide(8, 7));
+    }
+
+
 }
