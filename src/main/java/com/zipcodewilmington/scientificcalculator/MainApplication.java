@@ -2,6 +2,7 @@ package com.zipcodewilmington.scientificcalculator;
 import com.sun.tools.javac.Main;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,8 @@ public class MainApplication implements ActionListener {
     JButton buttonDecimal, buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour,
             buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply,
             buttonDivide, buttonSin, buttonRad, buttonCos, buttonTan, buttonASin, buttonACos, buttonATan,
-            buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN, buttonInvertSign, buttonSqrt;
+            buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN, buttonInvertSign, buttonSqrt,
+            buttonYellow;
 
     // operands and operators
     String operand = "0";
@@ -30,8 +32,15 @@ public class MainApplication implements ActionListener {
     public MainApplication () {
         // Ryan will work here on GUI
         f = new JFrame("Scientific Calculator");
-        display = new JTextField(18);
+        display = new JTextField();
         display.setEditable(false); // limit interaction to button clicks
+
+        Color gray = new Color(60,60,60);
+        Color softYellow = new Color(232, 212, 142);
+        Color skyBlue = new Color(183, 208, 237);
+        Color lavender = new Color(186, 142, 191);
+        Color mint = new Color(180, 222, 186);
+        Border calcBorder = BorderFactory.createLineBorder(gray, 1);
 
         buttonDecimal = new JButton(".");
         buttonEquals = new JButton("=");
@@ -65,48 +74,136 @@ public class MainApplication implements ActionListener {
         buttonInvertSign = new JButton("+/-");
         buttonSqrt = new JButton("sqrt");
 
+        buttonYellow = new JButton("YE");
+
+
         // panel setup
         JPanel p = new JPanel();
+
+        // here
+        GridBagLayout gbl = new GridBagLayout();
+        p.setLayout(gbl);
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 1;
+        c.weighty = 1;
+        c.gridwidth = 4;
+        c.gridx = 0;
+        c.gridy = 0;
+        gbl.setConstraints(display, c);
         p.add(display);
-        p.add(buttonClear);
 
-        p.add(buttonSeven);
-        p.add(buttonEight);
-        p.add(buttonNine);
-        p.add(buttonDivide);
-
-        p.add(buttonFour);
-        p.add(buttonFive);
-        p.add(buttonSix);
-        p.add(buttonMultiply);
-
-        p.add(buttonOne);
-        p.add(buttonTwo);
-        p.add(buttonThree);
-        p.add(buttonMinus);
-
-        p.add(buttonZero);
-        p.add(buttonDecimal);
-        p.add(buttonEquals);
+        c.gridwidth = 1;
+        c.gridy = 1;
+        gbl.setConstraints(buttonPlus, c);
         p.add(buttonPlus);
+        c.gridx = 1;
+        gbl.setConstraints(buttonSeven, c);
+        p.add(buttonSeven);
+        c.gridx = 2;
+        gbl.setConstraints(buttonEight, c);
+        p.add(buttonEight);
+        c.gridx = 3;
+        gbl.setConstraints(buttonNine, c);
+        p.add(buttonNine);
 
+        c.gridy = 2;
+        c.gridx = 0;
+        gbl.setConstraints(buttonDivide, c);
+        p.add(buttonDivide);
+        c.gridx = 1;
+        gbl.setConstraints(buttonFour, c);
+        p.add(buttonFour);
+        c.gridx = 2;
+        gbl.setConstraints(buttonFive, c);
+        p.add(buttonFive);
+        c.gridx = 3;
+        gbl.setConstraints(buttonSix, c);
+        p.add(buttonSix);
+
+        c.gridy = 3;
+        c.gridx = 0;
+        gbl.setConstraints(buttonMultiply, c);
+        p.add(buttonMultiply);
+        c.gridx = 1;
+        gbl.setConstraints(buttonOne, c);
+        p.add(buttonOne);
+        c.gridx = 2;
+        gbl.setConstraints(buttonTwo, c);
+        p.add(buttonTwo);
+        c.gridx = 3;
+        gbl.setConstraints(buttonThree, c);
+        p.add(buttonThree);
+
+        c.gridy = 4;
+        c.gridx = 0;
+        gbl.setConstraints(buttonMinus, c);
+        p.add(buttonMinus);
+        c.gridx = 1;
+        gbl.setConstraints(buttonZero, c);
+        p.add(buttonZero);
+        c.gridx = 2;
+        gbl.setConstraints(buttonDecimal, c);
+        p.add(buttonDecimal);
+        c.gridx = 3;
+        gbl.setConstraints(buttonEquals, c);
+        p.add(buttonEquals);
+
+        c.gridy = 5;
+        c.gridx = 0;
+        gbl.setConstraints(buttonClear, c);
+        p.add(buttonClear);
+        c.gridx = 1;
+        gbl.setConstraints(buttonSin, c);
         p.add(buttonSin);
+        c.gridx = 2;
+        gbl.setConstraints(buttonCos, c);
         p.add(buttonCos);
+        c.gridx = 3;
+        gbl.setConstraints(buttonTan, c);
         p.add(buttonTan);
-        p.add(buttonRad);
 
+        c.gridy = 6;
+        c.gridx = 0;
+        gbl.setConstraints(buttonRad, c);
+        p.add(buttonRad);
+        c.gridx = 1;
+        gbl.setConstraints(buttonASin, c);
         p.add(buttonASin);
+        c.gridx = 2;
+        gbl.setConstraints(buttonACos, c);
         p.add(buttonACos);
+        c.gridx = 3;
+        gbl.setConstraints(buttonATan, c);
         p.add(buttonATan);
+
+        c.gridy = 7;
+        c.gridx = 0;
+        gbl.setConstraints(buttonYellow, c);
+        p.add(buttonYellow);
+        c.gridx = 1;
+        gbl.setConstraints(buttonSqrt, c);
+        p.add(buttonSqrt);
+        c.gridx = 2;
+        gbl.setConstraints(buttonInvertSign, c);
+        p.add(buttonInvertSign);
+        c.gridx = 3;
+        gbl.setConstraints(buttonFactorial, c);
         p.add(buttonFactorial);
 
+        c.gridy = 8;
+        c.gridx = 0;
+        gbl.setConstraints(buttonLog, c);
         p.add(buttonLog);
+        c.gridx = 1;
+        gbl.setConstraints(buttonILog, c);
         p.add(buttonILog);
+        c.gridx = 2;
+        gbl.setConstraints(buttonLogN, c);
         p.add(buttonLogN);
+        c.gridx = 3;
+        gbl.setConstraints(buttonILogN, c);
         p.add(buttonILogN);
-
-        p.add(buttonSqrt);
-        p.add(buttonInvertSign);
 
         // listening to button clicks
         buttonDecimal.addActionListener(this);
@@ -140,12 +237,61 @@ public class MainApplication implements ActionListener {
         buttonILogN.addActionListener(this);
         buttonInvertSign.addActionListener(this);
         buttonSqrt.addActionListener(this);
+        buttonYellow.addActionListener(this);
 
-        p.setBackground(new Color(186, 142, 191));
+        buttonDecimal.setBorder(calcBorder);
+        buttonEquals.setBorder(calcBorder);
+        buttonClear.setBorder(calcBorder);
+        buttonZero.setBorder(calcBorder);
+        buttonOne.setBorder(calcBorder);
+        buttonTwo.setBorder(calcBorder);
+        buttonThree.setBorder(calcBorder);
+        buttonFour.setBorder(calcBorder);
+        buttonFive.setBorder(calcBorder);
+        buttonSix.setBorder(calcBorder);
+        buttonSeven.setBorder(calcBorder);
+        buttonEight.setBorder(calcBorder);;
+        buttonNine.setBorder(calcBorder);
+        buttonPlus.setBorder(calcBorder);
+        buttonMinus.setBorder(calcBorder);
+        buttonMultiply.setBorder(calcBorder);
+        buttonDivide.setBorder(calcBorder);
+        buttonRad.setBorder(calcBorder);
+        buttonSin.setBorder(calcBorder);
+        buttonCos.setBorder(calcBorder);
+        buttonTan.setBorder(calcBorder);
+        buttonASin.setBorder(calcBorder);
+        buttonACos.setBorder(calcBorder);
+        buttonATan.setBorder(calcBorder);
+        buttonFactorial.setBorder(calcBorder);
+        buttonLog.setBorder(calcBorder);
+        buttonLogN.setBorder(calcBorder);
+        buttonILog.setBorder(calcBorder);
+        buttonILogN.setBorder(calcBorder);
+        buttonInvertSign.setBorder(calcBorder);
+        buttonSqrt.setBorder(calcBorder);
+        buttonYellow.setBorder(calcBorder);
+
+        try {
+            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        buttonYellow.setOpaque(true);
+        buttonYellow.setBackground(softYellow);
+        buttonYellow.setForeground(softYellow);
+        buttonYellow.setBorder(calcBorder);
+
+        p.setBackground(lavender);
         f.add(p);
-        //f.pack(); may be used instead of setSize? might want to look into layouts
-        f.setSize(350, 400);
+        //f.pack(); // may be used instead of setSize? might want to look into layouts
+        f.setSize(450, 500);
+        display.setHorizontalAlignment(SwingConstants.RIGHT);
         display.setText(operand);
+        Font displayFont = new Font("SansSerif", Font.BOLD, 24);
+        display.setFont(displayFont);
+        display.setForeground(new Color(100,100,100));
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null); // spawns window centered
         f.setResizable(false);
