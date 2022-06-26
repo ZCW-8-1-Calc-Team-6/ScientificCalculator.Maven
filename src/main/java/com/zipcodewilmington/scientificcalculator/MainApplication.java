@@ -13,7 +13,7 @@ public class MainApplication implements ActionListener {
     JButton buttonDecimal, buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour,
             buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply,
             buttonDivide, buttonSin, buttonRad, buttonCos, buttonTan, buttonASin, buttonACos, buttonATan,
-            buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN, buttonInvertSign;
+            buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN, buttonInvertSign, buttonSqrt;
 
     // operands and operators
     String operand = "0";
@@ -63,6 +63,7 @@ public class MainApplication implements ActionListener {
         buttonLogN = new JButton("ln");
         buttonILogN = new JButton("iln");
         buttonInvertSign = new JButton("+/-");
+        buttonSqrt = new JButton("sqrt");
 
         // panel setup
         JPanel p = new JPanel();
@@ -104,6 +105,7 @@ public class MainApplication implements ActionListener {
         p.add(buttonLogN);
         p.add(buttonILogN);
 
+        p.add(buttonSqrt);
         p.add(buttonInvertSign);
 
         // listening to button clicks
@@ -137,6 +139,7 @@ public class MainApplication implements ActionListener {
         buttonILog.addActionListener(this);
         buttonILogN.addActionListener(this);
         buttonInvertSign.addActionListener(this);
+        buttonSqrt.addActionListener(this);
 
         p.setBackground(new Color(186, 142, 191));
         f.add(p);
@@ -378,7 +381,7 @@ public class MainApplication implements ActionListener {
                 // display the result
                 // clear everything, set operand to
             if (in.equals("sin()") || in.equals("cos()") || in.equals("tan()") || in.charAt(0) == 'a'
-                || in.charAt(0) == 'i' || in.charAt(0) == 'l') {
+                || in.charAt(0) == 'i' || in.charAt(0) == 'l' || in.equals("sqrt")) {
                 double d = switch (in) {
                     case "sin()" -> ScientificFunctions.sin(Double.parseDouble(display.getText()), units);
                     case "cos()" -> ScientificFunctions.cos(Double.parseDouble(display.getText()), units);
@@ -390,6 +393,7 @@ public class MainApplication implements ActionListener {
                     case "ilog" -> ScientificFunctions.inverseLog(Double.parseDouble(display.getText()));
                     case "ln" -> ScientificFunctions.naturalLog(Double.parseDouble(display.getText()));
                     case "iln" -> ScientificFunctions.inverseNaturalLog(Double.parseDouble(display.getText()));
+                    case "sqrt" -> BasicFunctions.sqrt(Double.parseDouble(display.getText()));
                     default -> 0.00;
                 };
                 display.setText(Double.toString(d));
