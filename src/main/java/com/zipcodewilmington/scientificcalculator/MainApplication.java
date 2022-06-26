@@ -377,7 +377,7 @@ public class MainApplication implements ActionListener {
                 // call the method with whatever is on the display
                 // display the result
                 // clear everything, set operand to
-            if (in.charAt(0) == 's' || in.charAt(0) == 'c' || in.charAt(0) == 't' || in.charAt(0) == 'a'
+            if (in.equals("sin()") || in.equals("cos()") || in.equals("tan()") || in.charAt(0) == 'a'
                 || in.charAt(0) == 'i' || in.charAt(0) == 'l') {
                 double d = switch (in) {
                     case "sin()" -> ScientificFunctions.sin(Double.parseDouble(display.getText()), units);
