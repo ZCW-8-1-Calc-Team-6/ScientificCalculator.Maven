@@ -2,6 +2,7 @@ package com.zipcodewilmington.scientificcalculator;
 import com.sun.tools.javac.Main;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,10 +11,18 @@ public class MainApplication implements ActionListener {
 
     JFrame f;
     JTextField display;
+    JPanel p;
     JButton buttonDecimal, buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour,
             buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply,
             buttonDivide, buttonSin, buttonRad, buttonCos, buttonTan, buttonASin, buttonACos, buttonATan,
-            buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN, buttonInvertSign;
+            buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN, buttonInvertSign, buttonSqrt,
+            buttonYellow, buttonMint, buttonSkyBlue, buttonLavender;
+
+    Color gray = new Color(60,60,60);
+    Color softYellow = new Color(232, 212, 142);
+    Color skyBlue = new Color(183, 208, 237);
+    Color lavender = new Color(186, 142, 191);
+    Color mint = new Color(180, 222, 186);
 
     // operands and operators
     String operand = "0";
@@ -24,12 +33,17 @@ public class MainApplication implements ActionListener {
     String operator2 = "";
     String operator3 = "";
     String units = "degrees";
-
+    public static void main(String[] args) {
+        new MainApplication();
+    }
     public MainApplication () {
         // Ryan will work here on GUI
         f = new JFrame("Scientific Calculator");
-        display = new JTextField(18);
+        p = new JPanel();
+        display = new JTextField();
         display.setEditable(false); // limit interaction to button clicks
+
+        Border calcBorder = BorderFactory.createLineBorder(gray, 1);
 
         buttonDecimal = new JButton(".");
         buttonEquals = new JButton("=");
@@ -61,48 +75,150 @@ public class MainApplication implements ActionListener {
         buttonLogN = new JButton("ln");
         buttonILogN = new JButton("iln");
         buttonInvertSign = new JButton("+/-");
+        buttonSqrt = new JButton("sqrt");
+        buttonYellow = new JButton("YE");
+        buttonMint = new JButton("MI");
+        buttonSkyBlue = new JButton("SK");
+        buttonLavender = new JButton("LA");
 
-        // panel setup
-        JPanel p = new JPanel();
+        // here
+        GridBagLayout gbl = new GridBagLayout();
+        p.setLayout(gbl);
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 1;
+        c.weighty = 1;
+        c.gridwidth = 4;
+        c.gridx = 0;
+        c.gridy = 0;
+        gbl.setConstraints(display, c);
         p.add(display);
-        p.add(buttonClear);
 
-        p.add(buttonSeven);
-        p.add(buttonEight);
-        p.add(buttonNine);
-        p.add(buttonDivide);
-
-        p.add(buttonFour);
-        p.add(buttonFive);
-        p.add(buttonSix);
-        p.add(buttonMultiply);
-
-        p.add(buttonOne);
-        p.add(buttonTwo);
-        p.add(buttonThree);
-        p.add(buttonMinus);
-
-        p.add(buttonZero);
-        p.add(buttonDecimal);
-        p.add(buttonEquals);
+        c.gridwidth = 1;
+        c.gridy = 1;
+        gbl.setConstraints(buttonPlus, c);
         p.add(buttonPlus);
+        c.gridx = 1;
+        gbl.setConstraints(buttonSeven, c);
+        p.add(buttonSeven);
+        c.gridx = 2;
+        gbl.setConstraints(buttonEight, c);
+        p.add(buttonEight);
+        c.gridx = 3;
+        gbl.setConstraints(buttonNine, c);
+        p.add(buttonNine);
 
+        c.gridy = 2;
+        c.gridx = 0;
+        gbl.setConstraints(buttonDivide, c);
+        p.add(buttonDivide);
+        c.gridx = 1;
+        gbl.setConstraints(buttonFour, c);
+        p.add(buttonFour);
+        c.gridx = 2;
+        gbl.setConstraints(buttonFive, c);
+        p.add(buttonFive);
+        c.gridx = 3;
+        gbl.setConstraints(buttonSix, c);
+        p.add(buttonSix);
+
+        c.gridy = 3;
+        c.gridx = 0;
+        gbl.setConstraints(buttonMultiply, c);
+        p.add(buttonMultiply);
+        c.gridx = 1;
+        gbl.setConstraints(buttonOne, c);
+        p.add(buttonOne);
+        c.gridx = 2;
+        gbl.setConstraints(buttonTwo, c);
+        p.add(buttonTwo);
+        c.gridx = 3;
+        gbl.setConstraints(buttonThree, c);
+        p.add(buttonThree);
+
+        c.gridy = 4;
+        c.gridx = 0;
+        gbl.setConstraints(buttonMinus, c);
+        p.add(buttonMinus);
+        c.gridx = 1;
+        gbl.setConstraints(buttonZero, c);
+        p.add(buttonZero);
+        c.gridx = 2;
+        gbl.setConstraints(buttonDecimal, c);
+        p.add(buttonDecimal);
+        c.gridx = 3;
+        gbl.setConstraints(buttonEquals, c);
+        p.add(buttonEquals);
+
+        c.gridy = 5;
+        c.gridx = 0;
+        gbl.setConstraints(buttonClear, c);
+        p.add(buttonClear);
+        c.gridx = 1;
+        gbl.setConstraints(buttonSin, c);
         p.add(buttonSin);
+        c.gridx = 2;
+        gbl.setConstraints(buttonCos, c);
         p.add(buttonCos);
+        c.gridx = 3;
+        gbl.setConstraints(buttonTan, c);
         p.add(buttonTan);
-        p.add(buttonRad);
 
+        c.gridy = 6;
+        c.gridx = 0;
+        gbl.setConstraints(buttonRad, c);
+        p.add(buttonRad);
+        c.gridx = 1;
+        gbl.setConstraints(buttonASin, c);
         p.add(buttonASin);
+        c.gridx = 2;
+        gbl.setConstraints(buttonACos, c);
         p.add(buttonACos);
+        c.gridx = 3;
+        gbl.setConstraints(buttonATan, c);
         p.add(buttonATan);
+
+        c.gridy = 7;
+        c.gridx = 0;
+        //gbl.setConstraints(buttonYellow, c);
+        //p.add(buttonYellow);
+        c.gridx = 1;
+        gbl.setConstraints(buttonSqrt, c);
+        p.add(buttonSqrt);
+        c.gridx = 2;
+        gbl.setConstraints(buttonInvertSign, c);
+        p.add(buttonInvertSign);
+        c.gridx = 3;
+        gbl.setConstraints(buttonFactorial, c);
         p.add(buttonFactorial);
 
+        c.gridy = 8;
+        c.gridx = 0;
+        gbl.setConstraints(buttonLog, c);
         p.add(buttonLog);
+        c.gridx = 1;
+        gbl.setConstraints(buttonILog, c);
         p.add(buttonILog);
+        c.gridx = 2;
+        gbl.setConstraints(buttonLogN, c);
         p.add(buttonLogN);
+        c.gridx = 3;
+        gbl.setConstraints(buttonILogN, c);
         p.add(buttonILogN);
 
-        p.add(buttonInvertSign);
+        c.gridy = 9;
+        c.gridx = 0;
+        gbl.setConstraints(buttonYellow, c);
+        p.add(buttonYellow);
+        c.gridx = 1;
+        gbl.setConstraints(buttonMint, c);
+        p.add(buttonMint);
+        c.gridx = 2;
+        gbl.setConstraints(buttonSkyBlue, c);
+        p.add(buttonSkyBlue);
+        c.gridx = 3;
+        gbl.setConstraints(buttonLavender, c);
+        p.add(buttonLavender);
 
         // listening to button clicks
         buttonDecimal.addActionListener(this);
@@ -135,86 +251,142 @@ public class MainApplication implements ActionListener {
         buttonILog.addActionListener(this);
         buttonILogN.addActionListener(this);
         buttonInvertSign.addActionListener(this);
+        buttonSqrt.addActionListener(this);
+        buttonYellow.addActionListener(this);
+        buttonMint.addActionListener(this);
+        buttonSkyBlue.addActionListener(this);
+        buttonLavender.addActionListener(this);
 
-        p.setBackground(new Color(186, 142, 191));
+        buttonDecimal.setBorder(calcBorder);
+        buttonEquals.setBorder(calcBorder);
+        buttonClear.setBorder(calcBorder);
+        buttonZero.setBorder(calcBorder);
+        buttonOne.setBorder(calcBorder);
+        buttonTwo.setBorder(calcBorder);
+        buttonThree.setBorder(calcBorder);
+        buttonFour.setBorder(calcBorder);
+        buttonFive.setBorder(calcBorder);
+        buttonSix.setBorder(calcBorder);
+        buttonSeven.setBorder(calcBorder);
+        buttonEight.setBorder(calcBorder);;
+        buttonNine.setBorder(calcBorder);
+        buttonPlus.setBorder(calcBorder);
+        buttonMinus.setBorder(calcBorder);
+        buttonMultiply.setBorder(calcBorder);
+        buttonDivide.setBorder(calcBorder);
+        buttonRad.setBorder(calcBorder);
+        buttonSin.setBorder(calcBorder);
+        buttonCos.setBorder(calcBorder);
+        buttonTan.setBorder(calcBorder);
+        buttonASin.setBorder(calcBorder);
+        buttonACos.setBorder(calcBorder);
+        buttonATan.setBorder(calcBorder);
+        buttonFactorial.setBorder(calcBorder);
+        buttonLog.setBorder(calcBorder);
+        buttonLogN.setBorder(calcBorder);
+        buttonILog.setBorder(calcBorder);
+        buttonILogN.setBorder(calcBorder);
+        buttonInvertSign.setBorder(calcBorder);
+        buttonSqrt.setBorder(calcBorder);
+        buttonYellow.setBorder(calcBorder);
+        buttonMint.setBorder(calcBorder);
+        buttonSkyBlue.setBorder(calcBorder);
+        buttonLavender.setBorder(calcBorder);
+
+        try {
+            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        buttonYellow.setOpaque(true);
+        buttonYellow.setBackground(softYellow);
+        buttonYellow.setForeground(softYellow);
+        buttonMint.setOpaque(true);
+        buttonMint.setBackground(mint);
+        buttonMint.setForeground(mint);
+        buttonSkyBlue.setOpaque(true);
+        buttonSkyBlue.setBackground(skyBlue);
+        buttonSkyBlue.setForeground(skyBlue);
+        buttonLavender.setOpaque(true);
+        buttonLavender.setBackground(lavender);
+        buttonLavender.setForeground(lavender);
+
+        p.setBackground(lavender);
         f.add(p);
-        //f.pack(); may be used instead of setSize? might want to look into layouts
-        f.setSize(350, 400);
+        //f.pack(); // may be used instead of setSize? might want to look into layouts
+        f.setSize(450, 500);
+        display.setHorizontalAlignment(SwingConstants.RIGHT);
         display.setText(operand);
+        Font displayFont = new Font("SansSerif", Font.BOLD, 24);
+        display.setFont(displayFont);
+        display.setForeground(Color.darkGray);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null); // spawns window centered
         f.setResizable(false);
         f.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new MainApplication();
-    }
-
     public void switchUnitsMode() {
-        if (this.units.equals("degrees")) {
-            this.units = "radians";
+        if (units.equals("degrees")) {
+            units = "radians";
         }
         else {
-            this.units = "degrees";
+            units = "degrees";
         }
     }
 
     public void switchUnitsMode(String s) {
         if (s.equals("degrees")) {
-            this.units = "degrees";
+            units = "degrees";
         }
         else {
-            this.units = "radians";
+            units = "radians";
         }
     }
 
     public String getTextField() {
-        return this.display.getText();
+        return display.getText();
     }
 
     public void setDisplayAndClearMemory(String newDisplayValue) {
-        this.operand = newDisplayValue;
-        this.display.setText(this.operand);
-        this.operand2 = "";
-        this.operand3 = "";
-        this.operand4 = "";
-        this.operator = "";
-        this.operator2 = "";
-        this.operator3 = "";
+        operand = newDisplayValue;
+        display.setText(operand);
+        operand2 = "";
+        operand3 = "";
+        operand4 = "";
+        operator = "";
+        operator2 = "";
+        operator3 = "";
     }
 
-//    public String twoSidedMath(String leftSide, String operator, String rightSide) {
-//        double leftSideNum = Double.parseDouble(leftSide);
-//        double rightSideNum = Double.parseDouble(rightSide);
-//
-//        if (operator.equals("+")) {
-//            return BasicFunctions.add(leftSideNum, rightSideNum);
-//        }
-//        else if (operator.equals("-")) {
-//            return BasicFunctions.substract(leftSideNum, rightSideNum);
-//        }
-//        else if (operator.equals("*")) {
-//            return BasicFunctions.multiply(leftSideNum, rightSideNum);
-//        }
-//        else if (operator.equals("/")) {
-//            return BasicFunctions.divide(leftSideNum, rightSideNum);
-//        }
-//        else if (operator.equals("^")) {
-//            return BasicFunctions.exponentiation(leftSideNum, rightSideNum);
-//        }
-//    }
+    public String twoSidedMath(String leftSide, String operator, String rightSide) {
+        double leftSideNum = Double.parseDouble(leftSide);
+        double rightSideNum = Double.parseDouble(rightSide);
+
+        return switch (operator) {
+            case "+" -> BasicFunctions.add(leftSideNum, rightSideNum);
+            case "-" -> BasicFunctions.subtract(leftSideNum, rightSideNum);
+            case "*" -> BasicFunctions.multiply(leftSideNum, rightSideNum);
+            case "/" -> BasicFunctions.divide(leftSideNum, rightSideNum);
+//            case "^" -> BasicFunctions.exponentiation(leftSideNum, rightSideNum);
+            default -> "0.00";
+        };
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String in = e.getActionCommand();
 
-        // this will call methods in two files
-        // based on what operator was clicked on the calculator panel
+        // methods called in two files based on what operator was clicked on the calculator panel
             // BasicFunctions.java
             // ScientificFunctions.java
 
-        // if you hit a number 0-9 or a decimal
+        ///////////////////////
+        ///////////////////////
+        // NUMBERS AND DECIMAL
+        ///////////////////////
+        ///////////////////////
         if ((in.charAt(0) >= '0' && in.charAt(0) <= '9') || in.equals(".")) {
             if (!operator.equals("")) {
                 if (operand2.equals("")) {
@@ -303,7 +475,11 @@ public class MainApplication implements ActionListener {
                 display.setText(operand);
             }
         }
-        // else if you hit Rad/Deg toggle
+        /////////////////////////
+        /////////////////////////
+        // RADIAN / DEGREE TOGGLE
+        /////////////////////////
+        /////////////////////////
         else if (in.equals("Rad") || in.equals("Deg")) {
             this.switchUnitsMode();
             if (buttonRad.getText().equals("Rad")) {
@@ -313,58 +489,91 @@ public class MainApplication implements ActionListener {
                 buttonRad.setText("Rad");
             }
         }
-        // else if you hit the invert sign button
-//        else if (in.equals("+/-")) {
-//            if (!operand4.equals("")) {
-                  // operand4 = ScientificFunctions.invertSign(Double.parseDouble(operand4);
-//                // display.setText(operand4);
-//            }
-//            else if (!operand3.equals("")) {
-//                // operand3 = ScientificFunctions.invertSign(Double.parseDouble(operand3);
-//                // display.setText(operand3);
-//            }
-//            else if (!operand2.equals("")) {
-//                // operand2 = ScientificFunctions.invertSign(Double.parseDouble(operand2);
-//                // display.setText(operand2);
-//            }
-//            else {
-//                // operand = ScientificFunctions.invertSign(Double.parseDouble(operand);
-//                // display.setText(operand);
-//            }
-//        }
-        // else if you hit the =, do some math,
+        /////////////////////////
+        /////////////////////////
+        // INVERT SIGN TOGGLE
+        /////////////////////////
+        /////////////////////////
+        else if (in.equals("+/-")) {
+            if (!operand4.equals("")) {
+                operand4 = BasicFunctions.invertSign(Double.parseDouble(operand4));
+                display.setText(operand4);
+            }
+            else if (!operand3.equals("")) {
+                operand3 = BasicFunctions.invertSign(Double.parseDouble(operand3));
+                display.setText(operand3);
+            }
+            else if (!operand2.equals("")) {
+                operand2 = BasicFunctions.invertSign(Double.parseDouble(operand2));
+                display.setText(operand2);
+            }
+            else {
+                operand = BasicFunctions.invertSign(Double.parseDouble(operand));
+                display.setText(operand);
+            }
+        }
+        /////////////////////////
+        /////////////////////////
+        // EQUALS SIGN
+        /////////////////////////
+        /////////////////////////
         else if (in.equals("=")) {
             // if operator3 is loaded
             if (!operator3.equals("") && !operand4.equals("")) {
                 // 2 + 3 * 4 ^ 5 =
-//                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, twoSidedMath(operand3, operator3, operand4))));
+                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, twoSidedMath(operand3, operator3, operand4))));
             }
             // if operator2 is loaded
             // do operator 2 math first and then operator 1 math
             else if (!operator2.equals("") && !operand3.equals("")) {
                 // 2 + 3 * 4 =
-//                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3)));
+                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3)));
             }
             // else ( operator1 is loaded )
             // display two-sided answer
             // reset all fields?
             else if (!operator.equals("") && !operand2.equals("")){
                 // 2 + 3 =
-//                setDisplayAndClearMemory(twoSidedMath(operand, operator, operand2));
+                setDisplayAndClearMemory(twoSidedMath(operand, operator, operand2));
             }
         }
-        // else if you hit C
+        /////////////////////////
+        /////////////////////////
+        // CLEAR SIGN
+        /////////////////////////
+        /////////////////////////
         else if (in.equals("C")) { // clear selected
             setDisplayAndClearMemory("0");
         }
-        // else if you hit an operator
+        /////////////////////////
+        /////////////////////////
+        // COLORS
+        /////////////////////////
+        /////////////////////////
+        else if (in.equals("YE") || in.equals("LA") || in.equals("MI") || in.equals("SK")) {
+            switch (in) {
+                case "YE": p.setBackground(softYellow);
+                    break;
+                case "LA": p.setBackground(lavender);
+                    break;
+                case "MI": p.setBackground(mint);
+                    break;
+                case "SK": p.setBackground(skyBlue);
+                    break;
+            }
+        }
+        /////////////////////////
+        /////////////////////////
+        // ALL OPERATORS
+        /////////////////////////
+        /////////////////////////
         else {
             // if operator takes just 1 double
                 // call the method with whatever is on the display
                 // display the result
                 // clear everything, set operand to
-            if (in.charAt(0) == 's' || in.charAt(0) == 'c' || in.charAt(0) == 't' || in.charAt(0) == 'a'
-                || in.charAt(0) == 'i' || in.charAt(0) == 'l') {
+            if (in.equals("sin()") || in.equals("cos()") || in.equals("tan()") || in.charAt(0) == 'a'
+                || in.charAt(0) == 'i' || in.charAt(0) == 'l' || in.equals("sqrt")) {
                 double d = switch (in) {
                     case "sin()" -> ScientificFunctions.sin(Double.parseDouble(display.getText()), units);
                     case "cos()" -> ScientificFunctions.cos(Double.parseDouble(display.getText()), units);
@@ -376,6 +585,7 @@ public class MainApplication implements ActionListener {
                     case "ilog" -> ScientificFunctions.inverseLog(Double.parseDouble(display.getText()));
                     case "ln" -> ScientificFunctions.naturalLog(Double.parseDouble(display.getText()));
                     case "iln" -> ScientificFunctions.inverseNaturalLog(Double.parseDouble(display.getText()));
+                    case "sqrt" -> BasicFunctions.sqrt(Double.parseDouble(display.getText()));
                     default -> 0.00;
                 };
                 display.setText(Double.toString(d));
@@ -400,11 +610,13 @@ public class MainApplication implements ActionListener {
                         // set operator to input
                         // set operand to what's on display
                         // clear the operator2 and operand2
+                        // 2 + 3 * 5
+                        // 2 + 3 ^ 5
                 if ((operator2.equals("^")) ||
-                        (((operator2.equals("*")) || (operator2.equals("/"))) && (!operator.equals("+")) || (!operator.equals("-"))) ||
+                        (((operator2.equals("*")) || (operator2.equals("/"))) && ((!operator.equals("+")) && (!operator.equals("-")))) ||
                         ( (operator2.equals("+")) || (operator2.equals("-")) )
                         ) {
-//                    display.setText(twoSidedMath(operand, operator, operand2));
+                    display.setText(twoSidedMath(operand, operator, operand2));
                     operand = display.getText();
                     operator = in;
                     operand2 = "";
@@ -423,13 +635,13 @@ public class MainApplication implements ActionListener {
                 else {
                     if (in.equals("*") || in.equals("/")) {
                         // 2 + 3 * 4 *
-//                        operand2 = twoSidedMath(operand2, operator2, operand3);
+                        operand2 = twoSidedMath(operand2, operator2, operand3);
                         operator2 = in;
                         operand3 = "";
                     }
                     else {
                         // 2 + 3 * 4 +
-//                        operand = twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3));
+                        operand = twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3));
                         operator = in;
                         operand2 = "";
                         operand3 = "";
@@ -438,5 +650,6 @@ public class MainApplication implements ActionListener {
                 }
             }
         }
+
     }
 }
