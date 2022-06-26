@@ -1,8 +1,6 @@
 package com.zipcodewilmington.scientificcalculator;
 
 public class BasicFunctions {
-    public static void main(String[] args) {
-    }
 
     public static String add(double x, double y) {
         double value = x + y;
@@ -24,14 +22,17 @@ public class BasicFunctions {
         return Double.toString(value);
     }
 
-    public static double sqrt(double number) {
-        double x = 0;
-        return Math.sqrt(x);
+    public static String sqrt(double number) {
+        number = Math.sqrt(number);
+        return Double.toString(number);
     }
-    public static String invertSign(Double value){
+    public static String invertSign(double value){
         value = value * -1.0;
         return Double.toString(value);
     }
+
+    }
+
 }
 
 
