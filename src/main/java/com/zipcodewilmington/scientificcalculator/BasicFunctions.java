@@ -30,23 +30,14 @@ public class BasicFunctions {
         value = value * -1.0;
         return (Double.toString(value));
     }
-    public static double pow(double x, double y) {
-        return Math.pow(x ,y );
+
+    public static String pow(double x, double y) {
+        return Double.toString(Math.pow(x, y));
     }
+
     public static double inverse (double value) {
         return 1.0 / value;
     }
-
 }
 
-
-
-
-
-
-
-
-
-    // Tristan will write methods for basic calculator functions
-    // e.g. + - / *
 

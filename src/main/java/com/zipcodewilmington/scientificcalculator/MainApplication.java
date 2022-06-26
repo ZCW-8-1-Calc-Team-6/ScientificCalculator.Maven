@@ -1,5 +1,4 @@
 package com.zipcodewilmington.scientificcalculator;
-import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -16,7 +15,7 @@ public class MainApplication implements ActionListener {
             buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply,
             buttonDivide, buttonSin, buttonRad, buttonCos, buttonTan, buttonASin, buttonACos, buttonATan,
             buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN, buttonInvertSign, buttonSqrt,
-            buttonYellow, buttonMint, buttonSkyBlue, buttonLavender;
+            buttonYellow, buttonMint, buttonSkyBlue, buttonLavender, buttonPow, buttonInverse;
 
     Color gray = new Color(60,60,60);
     Color softYellow = new Color(232, 212, 142);
@@ -36,6 +35,7 @@ public class MainApplication implements ActionListener {
     public static void main(String[] args) {
         new MainApplication();
     }
+
     public MainApplication () {
         // Ryan will work here on GUI
         f = new JFrame("Scientific Calculator");
@@ -70,11 +70,13 @@ public class MainApplication implements ActionListener {
         buttonACos = new JButton("acos()");
         buttonATan = new JButton("atan()");
         buttonFactorial = new JButton("!");
+        buttonPow = new JButton("^");
         buttonLog = new JButton("log");
         buttonILog = new JButton("ilog");
         buttonLogN = new JButton("ln");
         buttonILogN = new JButton("iln");
         buttonInvertSign = new JButton("+/-");
+        buttonInverse = new JButton("inv");
         buttonSqrt = new JButton("sqrt");
         buttonYellow = new JButton("YE");
         buttonMint = new JButton("MI");
@@ -180,8 +182,8 @@ public class MainApplication implements ActionListener {
 
         c.gridy = 7;
         c.gridx = 0;
-        //gbl.setConstraints(buttonYellow, c);
-        //p.add(buttonYellow);
+        gbl.setConstraints(buttonPow, c);
+        p.add(buttonPow);
         c.gridx = 1;
         gbl.setConstraints(buttonSqrt, c);
         p.add(buttonSqrt);
@@ -207,6 +209,11 @@ public class MainApplication implements ActionListener {
         p.add(buttonILogN);
 
         c.gridy = 9;
+        c.gridx = 0;
+        gbl.setConstraints(buttonInverse, c);
+        p.add(buttonInverse);
+
+        c.gridy = 10;
         c.gridx = 0;
         gbl.setConstraints(buttonYellow, c);
         p.add(buttonYellow);
@@ -246,11 +253,13 @@ public class MainApplication implements ActionListener {
         buttonACos.addActionListener(this);
         buttonATan.addActionListener(this);
         buttonFactorial.addActionListener(this);
+        buttonPow.addActionListener(this);
         buttonLog.addActionListener(this);
         buttonLogN.addActionListener(this);
         buttonILog.addActionListener(this);
         buttonILogN.addActionListener(this);
         buttonInvertSign.addActionListener(this);
+        buttonInverse.addActionListener(this);
         buttonSqrt.addActionListener(this);
         buttonYellow.addActionListener(this);
         buttonMint.addActionListener(this);
@@ -268,7 +277,7 @@ public class MainApplication implements ActionListener {
         buttonFive.setBorder(calcBorder);
         buttonSix.setBorder(calcBorder);
         buttonSeven.setBorder(calcBorder);
-        buttonEight.setBorder(calcBorder);;
+        buttonEight.setBorder(calcBorder);
         buttonNine.setBorder(calcBorder);
         buttonPlus.setBorder(calcBorder);
         buttonMinus.setBorder(calcBorder);
@@ -282,11 +291,13 @@ public class MainApplication implements ActionListener {
         buttonACos.setBorder(calcBorder);
         buttonATan.setBorder(calcBorder);
         buttonFactorial.setBorder(calcBorder);
+        buttonPow.setBorder(calcBorder);
         buttonLog.setBorder(calcBorder);
         buttonLogN.setBorder(calcBorder);
         buttonILog.setBorder(calcBorder);
         buttonILogN.setBorder(calcBorder);
         buttonInvertSign.setBorder(calcBorder);
+        buttonInverse.setBorder(calcBorder);
         buttonSqrt.setBorder(calcBorder);
         buttonYellow.setBorder(calcBorder);
         buttonMint.setBorder(calcBorder);
@@ -361,15 +372,15 @@ public class MainApplication implements ActionListener {
     }
 
     public String twoSidedMath(String leftSide, String operator, String rightSide) {
-        double leftSideNum = Double.parseDouble(leftSide);
-        double rightSideNum = Double.parseDouble(rightSide);
+        double x = Double.parseDouble(leftSide);
+        double y = Double.parseDouble(rightSide);
 
         return switch (operator) {
-            case "+" -> BasicFunctions.add(leftSideNum, rightSideNum);
-            case "-" -> BasicFunctions.subtract(leftSideNum, rightSideNum);
-            case "*" -> BasicFunctions.multiply(leftSideNum, rightSideNum);
-            case "/" -> BasicFunctions.divide(leftSideNum, rightSideNum);
-//            case "^" -> BasicFunctions.exponentiation(leftSideNum, rightSideNum);
+            case "+" -> BasicFunctions.add(x, y);
+            case "-" -> BasicFunctions.subtract(x, y);
+            case "*" -> BasicFunctions.multiply(x, y);
+            case "/" -> BasicFunctions.divide(x, y);
+            case "^" -> BasicFunctions.pow(x, y);
             default -> "0.00";
         };
     }
@@ -552,14 +563,10 @@ public class MainApplication implements ActionListener {
         /////////////////////////
         else if (in.equals("YE") || in.equals("LA") || in.equals("MI") || in.equals("SK")) {
             switch (in) {
-                case "YE": p.setBackground(softYellow);
-                    break;
-                case "LA": p.setBackground(lavender);
-                    break;
-                case "MI": p.setBackground(mint);
-                    break;
-                case "SK": p.setBackground(skyBlue);
-                    break;
+                case "YE" -> p.setBackground(softYellow);
+                case "LA" -> p.setBackground(lavender);
+                case "MI" -> p.setBackground(mint);
+                case "SK" -> p.setBackground(skyBlue);
             }
         }
         /////////////////////////
@@ -586,6 +593,7 @@ public class MainApplication implements ActionListener {
                     case "ln" -> ScientificFunctions.naturalLog(Double.parseDouble(display.getText()));
                     case "iln" -> ScientificFunctions.inverseNaturalLog(Double.parseDouble(display.getText()));
                     case "sqrt" -> BasicFunctions.sqrt(Double.parseDouble(display.getText()));
+                    case "inv" -> BasicFunctions.inverse(Double.parseDouble(display.getText()));
                     default -> 0.00;
                 };
                 display.setText(Double.toString(d));
