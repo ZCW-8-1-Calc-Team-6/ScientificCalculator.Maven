@@ -10,7 +10,9 @@ public class MainApplication implements ActionListener {
 
     JFrame f;
     JTextField display;
-    JButton buttonDecimal, buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply, buttonDivide, buttonSin, buttonRad;
+    JButton buttonDecimal, buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour,
+            buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply,
+            buttonDivide, buttonSin, buttonRad, buttonCos, buttonTan;
 
     // operands and operators
     //
@@ -53,6 +55,8 @@ public class MainApplication implements ActionListener {
         buttonMultiply = new JButton("*");
         buttonDivide = new JButton("/");
         buttonSin = new JButton("sin()");
+        buttonCos = new JButton("cos()");
+        buttonTan = new JButton("tan()");
 
         buttonRad = new JButton("Rad");
 
@@ -82,6 +86,8 @@ public class MainApplication implements ActionListener {
         p.add(buttonPlus);
 
         p.add(buttonSin);
+        p.add(buttonCos);
+        p.add(buttonTan);
         p.add(buttonRad);
 
         buttonDecimal.addActionListener(this);
@@ -103,6 +109,8 @@ public class MainApplication implements ActionListener {
         buttonDivide.addActionListener(this);
         buttonSin.addActionListener(this);
         buttonRad.addActionListener(this);
+        buttonCos.addActionListener(this);
+        buttonTan.addActionListener(this);
 
 
         p.setBackground(new Color(186, 142, 191));
@@ -205,7 +213,7 @@ public class MainApplication implements ActionListener {
                 if (!operand.contains(".")) {
                     operand += ".";
                     display.setText(operand);
-                };
+                }
             } else {
                 if (this.getTextField().equals("0") && in.charAt(0) > '0') {
                     operand = in;
@@ -226,25 +234,25 @@ public class MainApplication implements ActionListener {
                 buttonRad.setText("Rad");
             }
         }
-        // else if you hit an operator
-        else if (in.charAt(0) == 's') {
-            double d = ScientificFunctions.sin(Double.parseDouble(operand), units);
-            display.setText(Double.toString(d));
+        // else if you hit the =, do some math,
+        else if (in.charAt(0) == '=') {
+            // if operator3 is loaded
+            if (!operator3.equals("") && !operand4.equals("")) {
+                // 2 + 3 * 4 ^ 5 =
+            }
+            // if operator2 is loaded
+            // do operator 2 math first and then operator 1 math
+            else if (!operator2.equals("") && !operand3.equals("")) {
+                // 2 + 3 * 4
+                // **
+            }
+            // else ( operator1 is loaded )
+            // display two sided answer
+            // reset all fields?
+            else if (!operator.equals("") && !operand2.equals("")){
+                // 2 + 3
+            }
         }
-            // if operator takes a single number
-                // call the method with whatever is on the display
-                // display the result
-                // clear the operator, right side, and left side?
-            // else if right side is empty
-                // set the operator to corresponding value
-            // else (you hit a second two-sided operator with two numbers stored!)
-                // if second operator is same or less in priority
-                    // display the two-sided math based on what's already stored in operator
-                    // set the operator to new operator input
-                    // set
-                // else (second operator has order priority)
-                    // stores the second operator
-                // ??? some third operator business!
         // else if you hit C
         else if (in.charAt(0) == 'C') { // clear selected
             operator = "";
@@ -256,24 +264,47 @@ public class MainApplication implements ActionListener {
             operand = "0";
             display.setText(operand);
         }
-        // else you the =, do some math,
+        // else if you hit an operator
         else {
-            // if operator3 is loaded
-            if (!operator3.equals("") && !operand4.equals("")) {
-                // 2 + 3 * 4 ^ 5 =
+            // if operator takes a single number
+                // call the method with whatever is on the display
+                // display the result
+                // clear everything, set operand to
+            if (in.charAt(0) == '+' || in.charAt(0) == '-' || in.charAt(0) == '*' || in.charAt(0) == '/' ||
+                    in.charAt(0) == 's' || in.charAt(0) == 'c' || in.charAt(0) == 't' || in.charAt(0) == 'a') {
+                double d = 0.0;
+                switch (in) {
+                    case "sin()":
+                        d = ScientificFunctions.sin(Double.parseDouble(display.getText()), units);
+                        break;
+                    case "cos()":
+                        d = ScientificFunctions.cos(Double.parseDouble(display.getText()), units);
+                        break;
+                    case "tan()":
+                        d = ScientificFunctions.tan(Double.parseDouble(display.getText()), units);
+                        break;
+                }
+                display.setText(Double.toString(d));
+                operand = display.getText();
+                operand2 = "";
+                operand3 = "";
+                operator = "";
+                operator2 = "";
+                operator3 = "";
             }
-            // if operator2 is loaded
-                // do operator 2 math first and then operator 1 math
-            else if (!operator2.equals("") && !operand3.equals("")) {
-                // 2 + 3 * 4
-                // **
+            // else if operand2 is empty
+                // set the operator to corresponding value
+                // e.g. 2 ?
+            else if (operand2.equals("")) {
+                operator = in;
             }
-            // else ( operator1 is loaded )
-                // display two sided answer
-                // reset all fields?
-            else if (!operator.equals("") && !operand2.equals("")){
-                // 2 + 3
-            }
+            // else (you hit a second two-sided operator with two numbers stored!)
+                // if second operator is same or less in priority
+                    // display the two-sided math based on what's already stored in operator
+                        // set the operator to new operator input// set
+                // else (second operator has order priority)
+                    // stores the second operator
+                // ??? some third operator business!
         }
     }
 }
