@@ -10,6 +10,7 @@ public class MainApplication implements ActionListener {
 
     JFrame f;
     JTextField display;
+    JButton buttonDecimal, buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply, buttonDivide, buttonSin, buttonRad;
 
     // operands and operators
     //
@@ -34,8 +35,6 @@ public class MainApplication implements ActionListener {
         display = new JTextField(18);
         display.setEditable(false); // limit interaction to button clicks
 
-        JButton buttonDecimal, buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply, buttonDivide, buttonSin;
-
         buttonDecimal = new JButton(".");
         buttonEquals = new JButton("=");
         buttonClear = new JButton("C");
@@ -54,6 +53,8 @@ public class MainApplication implements ActionListener {
         buttonMultiply = new JButton("*");
         buttonDivide = new JButton("/");
         buttonSin = new JButton("sin()");
+
+        buttonRad = new JButton("Rad");
 
         // panel setup
         JPanel p = new JPanel();
@@ -81,6 +82,7 @@ public class MainApplication implements ActionListener {
         p.add(buttonPlus);
 
         p.add(buttonSin);
+        p.add(buttonRad);
 
         buttonDecimal.addActionListener(this);
         buttonEquals.addActionListener(this);
@@ -100,13 +102,14 @@ public class MainApplication implements ActionListener {
         buttonMultiply.addActionListener(this);
         buttonDivide.addActionListener(this);
         buttonSin.addActionListener(this);
+        buttonRad.addActionListener(this);
 
 
         p.setBackground(new Color(186, 142, 191));
         f.add(p);
         //f.pack(); may be used instead of setSize? might want to look into layouts
         f.setSize(350, 275);
-        display.setText(this.operand);
+        display.setText(operand);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null); // spawns window centered
         f.setResizable(false);
@@ -199,6 +202,10 @@ public class MainApplication implements ActionListener {
             // else operator is empty
             else if (in.charAt(0) == '.') {
                 // decimal logic
+                if (!operand.contains(".")) {
+                    operand += ".";
+                    display.setText(operand);
+                };
             } else {
                 if (this.getTextField().equals("0") && in.charAt(0) > '0') {
                     operand = in;
@@ -209,7 +216,21 @@ public class MainApplication implements ActionListener {
                 }
             }
         }
+        // else if you hit Rad/Deg toggle
+        else if (in.equals("Rad") || in.equals("Deg")) {
+            this.switchUnitsMode();
+            if (buttonRad.getText().equals("Rad")) {
+                buttonRad.setText("Deg");
+            }
+            else {
+                buttonRad.setText("Rad");
+            }
+        }
         // else if you hit an operator
+        else if (in.charAt(0) == 's') {
+            double d = ScientificFunctions.sin(Double.parseDouble(operand), units);
+            display.setText(Double.toString(d));
+        }
             // if operator takes a single number
                 // call the method with whatever is on the display
                 // display the result
