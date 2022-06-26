@@ -184,26 +184,26 @@ public class MainApplication implements ActionListener {
         this.operator3 = "";
     }
 
-    public String twoSidedMath(String leftSide, String operator, String rightSide) {
-        double leftSideNum = Double.parseDouble(leftSide);
-        double rightSideNum = Double.parseDouble(rightSide);
-
-        if (operator.equals("+")) {
-            return BasicFunctions.add(leftSideNum, rightSideNum);
-        }
-        else if (operator.equals("-")) {
-            return BasicFunctions.substract(leftSideNum, rightSideNum);
-        }
-        else if (operator.equals("*")) {
-            return BasicFunctions.multiply(leftSideNum, rightSideNum);
-        }
-        else if (operator.equals("/")) {
-            return BasicFunctions.divide(leftSideNum, rightSideNum);
-        }
-        else if (operator.equals("^")) {
-            return BasicFunctions.exponentiation(leftSideNum, rightSideNum);
-        }
-    }
+//    public String twoSidedMath(String leftSide, String operator, String rightSide) {
+//        double leftSideNum = Double.parseDouble(leftSide);
+//        double rightSideNum = Double.parseDouble(rightSide);
+//
+//        if (operator.equals("+")) {
+//            return BasicFunctions.add(leftSideNum, rightSideNum);
+//        }
+//        else if (operator.equals("-")) {
+//            return BasicFunctions.substract(leftSideNum, rightSideNum);
+//        }
+//        else if (operator.equals("*")) {
+//            return BasicFunctions.multiply(leftSideNum, rightSideNum);
+//        }
+//        else if (operator.equals("/")) {
+//            return BasicFunctions.divide(leftSideNum, rightSideNum);
+//        }
+//        else if (operator.equals("^")) {
+//            return BasicFunctions.exponentiation(leftSideNum, rightSideNum);
+//        }
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -319,18 +319,20 @@ public class MainApplication implements ActionListener {
             // if operator3 is loaded
             if (!operator3.equals("") && !operand4.equals("")) {
                 // 2 + 3 * 4 ^ 5 =
+//                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, twoSidedMath(operand3, operator3, operand4))));
             }
             // if operator2 is loaded
             // do operator 2 math first and then operator 1 math
             else if (!operator2.equals("") && !operand3.equals("")) {
-                // 2 + 3 * 4
-                // **
+                // 2 + 3 * 4 =
+//                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3)));
             }
             // else ( operator1 is loaded )
-            // display two sided answer
+            // display two-sided answer
             // reset all fields?
             else if (!operator.equals("") && !operand2.equals("")){
-                // 2 + 3
+                // 2 + 3 =
+//                setDisplayAndClearMemory(twoSidedMath(operand, operator, operand2));
             }
         }
         // else if you hit C
@@ -383,7 +385,7 @@ public class MainApplication implements ActionListener {
                         (((operator2.equals("*")) || (operator2.equals("/"))) && (!operator.equals("+")) || (!operator.equals("-"))) ||
                         ( (operator2.equals("+")) || (operator2.equals("-")) )
                         ) {
-                    display.setText(twoSidedMath(operand, operator, operand2));
+//                    display.setText(twoSidedMath(operand, operator, operand2));
                     operand = display.getText();
                     operator = in;
                     operand2 = "";
