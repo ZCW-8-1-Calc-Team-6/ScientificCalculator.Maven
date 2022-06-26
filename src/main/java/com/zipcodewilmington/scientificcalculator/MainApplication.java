@@ -191,15 +191,17 @@ public class MainApplication implements ActionListener {
                         // e.g. 2 + 3
                         if (in.equals(".")) {
                             // decimal logic
-                            // **
+                            if (!operand2.contains(".")) {
+                                operand2 += ".";
+                                display.setText(operand);
+                            }
                         } else {
                             if (this.getTextField().equals("0") && in.charAt(0) > '0') {
                                 operand2 = in;
-                                display.setText(in);
                             } else if (!this.getTextField().equals("0")) {
                                 operand2 += in;
-                                display.setText(operand2);
                             }
+                            display.setText(operand2);
                         }
                     } else if (operand3.equals("")) {
                         // e.g. 2 + 3 * ?
@@ -214,14 +216,17 @@ public class MainApplication implements ActionListener {
                         // **
                         if (in.equals(".")) {
                             // decimal logic
+                            if (!operand3.contains(".")) {
+                                operand3 += ".";
+                                display.setText(operand);
+                            }
                         } else {
                             if (this.getTextField().equals("0") && in.charAt(0) > '0') {
                                 operand3 = in;
-                                display.setText(in);
                             } else if (!this.getTextField().equals("0")) {
                                 operand3 += in;
-                                display.setText(operand3);
                             }
+                            display.setText(operand3);
                         }
                     }
                 }
@@ -236,11 +241,10 @@ public class MainApplication implements ActionListener {
             } else {
                 if (this.getTextField().equals("0") && in.charAt(0) > '0') {
                     operand = in;
-                    display.setText(in);
                 } else if (!this.getTextField().equals("0")) {
                     operand += in;
-                    display.setText(operand);
                 }
+                display.setText(operand);
             }
         }
         // else if you hit Rad/Deg toggle
