@@ -12,16 +12,10 @@ public class MainApplication implements ActionListener {
     JTextField display;
     JButton buttonDecimal, buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour,
             buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply,
-            buttonDivide, buttonSin, buttonRad, buttonCos, buttonTan;
+            buttonDivide, buttonSin, buttonRad, buttonCos, buttonTan, buttonASin, buttonACos, buttonATan,
+            buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN;
 
     // operands and operators
-    //
-    // the calculator will operate on either one or two input numbers
-    // if the user enters 2 + 3
-    // it will be generalized to operandLeft operator operand2
-    //
-    // some operators or functions of the calculator only need one operand and
-    //      that will be stored in operandLeft
     String operand = "0";
     String operand2 = "";
     String operand3 = "";
@@ -57,8 +51,15 @@ public class MainApplication implements ActionListener {
         buttonSin = new JButton("sin()");
         buttonCos = new JButton("cos()");
         buttonTan = new JButton("tan()");
-
         buttonRad = new JButton("Rad");
+        buttonASin = new JButton("asin()");
+        buttonACos = new JButton("acos()");
+        buttonATan = new JButton("atan()");
+        buttonFactorial = new JButton("!");
+        buttonLog = new JButton("log");
+        buttonILog = new JButton("ilog");
+        buttonLogN = new JButton("ln");
+        buttonILogN = new JButton("iln");
 
         // panel setup
         JPanel p = new JPanel();
@@ -90,6 +91,17 @@ public class MainApplication implements ActionListener {
         p.add(buttonTan);
         p.add(buttonRad);
 
+        p.add(buttonASin);
+        p.add(buttonACos);
+        p.add(buttonATan);
+        p.add(buttonFactorial);
+
+        p.add(buttonLog);
+        p.add(buttonILog);
+        p.add(buttonLogN);
+        p.add(buttonILogN);
+
+        // listening to button clicks
         buttonDecimal.addActionListener(this);
         buttonEquals.addActionListener(this);
         buttonClear.addActionListener(this);
@@ -107,16 +119,23 @@ public class MainApplication implements ActionListener {
         buttonMinus.addActionListener(this);
         buttonMultiply.addActionListener(this);
         buttonDivide.addActionListener(this);
-        buttonSin.addActionListener(this);
         buttonRad.addActionListener(this);
+        buttonSin.addActionListener(this);
         buttonCos.addActionListener(this);
         buttonTan.addActionListener(this);
-
+        buttonASin.addActionListener(this);
+        buttonACos.addActionListener(this);
+        buttonATan.addActionListener(this);
+        buttonFactorial.addActionListener(this);
+        buttonLog.addActionListener(this);
+        buttonLogN.addActionListener(this);
+        buttonILog.addActionListener(this);
+        buttonILogN.addActionListener(this);
 
         p.setBackground(new Color(186, 142, 191));
         f.add(p);
         //f.pack(); may be used instead of setSize? might want to look into layouts
-        f.setSize(350, 275);
+        f.setSize(350, 400);
         display.setText(operand);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null); // spawns window centered
@@ -270,21 +289,27 @@ public class MainApplication implements ActionListener {
                 // call the method with whatever is on the display
                 // display the result
                 // clear everything, set operand to
-            if (in.charAt(0) == '+' || in.charAt(0) == '-' || in.charAt(0) == '*' || in.charAt(0) == '/' ||
-                    in.charAt(0) == 's' || in.charAt(0) == 'c' || in.charAt(0) == 't' || in.charAt(0) == 'a') {
-                double d = 0.0;
-                switch (in) {
-                    case "sin()":
-                        d = ScientificFunctions.sin(Double.parseDouble(display.getText()), units);
-                        break;
-                    case "cos()":
-                        d = ScientificFunctions.cos(Double.parseDouble(display.getText()), units);
-                        break;
-                    case "tan()":
-                        d = ScientificFunctions.tan(Double.parseDouble(display.getText()), units);
-                        break;
-                }
+            if (in.charAt(0) == 's' || in.charAt(0) == 'c' || in.charAt(0) == 't' || in.charAt(0) == 'a') {
+                double d = switch (in) {
+                    case "sin()" -> ScientificFunctions.sin(Double.parseDouble(display.getText()), units);
+                    case "cos()" -> ScientificFunctions.cos(Double.parseDouble(display.getText()), units);
+                    case "tan()" -> ScientificFunctions.tan(Double.parseDouble(display.getText()), units);
+                    case "asin()" -> ScientificFunctions.asin(Double.parseDouble(display.getText()), units);
+                    case "acos()" -> ScientificFunctions.acos(Double.parseDouble(display.getText()), units);
+                    case "atan()" -> ScientificFunctions.atan(Double.parseDouble(display.getText()), units);
+                    default -> 0.0;
+                };
                 display.setText(Double.toString(d));
+                operand = display.getText();
+                operand2 = "";
+                operand3 = "";
+                operator = "";
+                operator2 = "";
+                operator3 = "";
+            }
+            else if (in.charAt(0) == '!') {
+                long l = ScientificFunctions.factorial(Integer.parseInt(display.getText()));
+                display.setText(Long.toString(l));
                 operand = display.getText();
                 operand2 = "";
                 operand3 = "";
