@@ -184,6 +184,27 @@ public class MainApplication implements ActionListener {
         this.operator3 = "";
     }
 
+    public String twoSidedMath(String leftSide, String operator, String rightSide) {
+        double leftSideNum = Double.parseDouble(leftSide);
+        double rightSideNum = Double.parseDouble(rightSide);
+
+        if (operator.equals("+")) {
+            return BasicFunctions.add(leftSideNum, rightSideNum);
+        }
+        else if (operator.equals("-")) {
+            return BasicFunctions.substract(leftSideNum, rightSideNum);
+        }
+        else if (operator.equals("*")) {
+            return BasicFunctions.multiply(leftSideNum, rightSideNum);
+        }
+        else if (operator.equals("/")) {
+            return BasicFunctions.divide(leftSideNum, rightSideNum);
+        }
+        else if (operator.equals("^")) {
+            return BasicFunctions.exponentiation(leftSideNum, rightSideNum);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String in = e.getActionCommand();
@@ -194,7 +215,7 @@ public class MainApplication implements ActionListener {
             // ScientificFunctions.java
 
         // if you hit (a number or .)
-        if ((in.charAt(0) >= '0' && in.charAt(0) <= '9') || in.charAt(0) == '.') {
+        if ((in.charAt(0) >= '0' && in.charAt(0) <= '9') || in.equals(".")) {
             if (!operator.equals("")) {
                 if (operand2.equals("")) {
                     if (in.equals(".")) {
@@ -249,7 +270,7 @@ public class MainApplication implements ActionListener {
                 }
             }
             // else operator is empty
-            else if (in.charAt(0) == '.') {
+            else if (in.equals(".")) {
                 // decimal logic
                 if (!operand.contains(".")) {
                     operand += ".";
@@ -275,26 +296,26 @@ public class MainApplication implements ActionListener {
             }
         }
         // else if you hit the invert sign button
-        else if (in.equals("+/-")) {
-            if (!operand4.equals("")) {
-                Double.parseDouble(operand4) * -1.0;
-                display.setText(operand4);
-            }
-            else if () {
-                operand3 = Double.toString(operand3) * -1.0;
-                display.setText(operand3);
-            }
-            else if () {
-                operand2 = Double.toString(operand2) * -1.0;
-                display.setText(operand2);
-            }
-            else {
-                operand = Double.toString(operand) * -1.0;
-                display.setText(operand);
-            }
-        }
+//        else if (in.equals("+/-")) {
+//            if (!operand4.equals("")) {
+                  // operand4 = ScientificFunctions.invertSign(Double.parseDouble(operand4);
+//                // display.setText(operand4);
+//            }
+//            else if (!operand3.equals("")) {
+//                // operand3 = ScientificFunctions.invertSign(Double.parseDouble(operand3);
+//                // display.setText(operand3);
+//            }
+//            else if (!operand2.equals("")) {
+//                // operand2 = ScientificFunctions.invertSign(Double.parseDouble(operand2);
+//                // display.setText(operand2);
+//            }
+//            else {
+//                // operand = ScientificFunctions.invertSign(Double.parseDouble(operand);
+//                // display.setText(operand);
+//            }
+//        }
         // else if you hit the =, do some math,
-        else if (in.charAt(0) == '=') {
+        else if (in.equals("=")) {
             // if operator3 is loaded
             if (!operator3.equals("") && !operand4.equals("")) {
                 // 2 + 3 * 4 ^ 5 =
@@ -313,7 +334,7 @@ public class MainApplication implements ActionListener {
             }
         }
         // else if you hit C
-        else if (in.charAt(0) == 'C') { // clear selected
+        else if (in.equals("C")) { // clear selected
             setDisplayAndClearMemory("0");
         }
         // else if you hit an operator
@@ -340,7 +361,7 @@ public class MainApplication implements ActionListener {
                 display.setText(Double.toString(d));
                 setDisplayAndClearMemory(display.getText());
             }
-            else if (in.charAt(0) == '!') {
+            else if (in.equals("!")) {
                 long l = ScientificFunctions.factorial(Integer.parseInt(display.getText()));
                 display.setText(Long.toString(l));
                 setDisplayAndClearMemory(display.getText());
@@ -352,12 +373,26 @@ public class MainApplication implements ActionListener {
                 operator = in;
             }
             // else (you hit a second two-sided operator with two numbers stored!)
+            else {
                 // if second operator is same or less in priority
                     // display the two-sided math based on what's already stored in operator
-                        // set the operator to new operator input// set
+                        // set operator to input
+                        // set operand to what's on display
+                        // clear the operator2 and operand2
+                if ((operator2.equals("^")) ||
+                        (((operator2.equals("*")) || (operator2.equals("/"))) && (!operator.equals("+")) || (!operator.equals("-"))) ||
+                        ( (operator2.equals("+")) || (operator2.equals("-")) )
+                        ) {
+                    display.setText(twoSidedMath(operand, operator, operand2));
+                    operand = display.getText();
+                    operator = in;
+                    operand2 = "";
+                    operator2 = "";
+                }
                 // else (second operator has order priority)
                     // stores the second operator
                 // ??? some third operator business!
+            }
         }
     }
 }
