@@ -200,12 +200,15 @@ public class MainApplication implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String in = e.getActionCommand();
 
-        // this will call methods in two files
-        // based on what operator was clicked on the calculator panel
+        // methods called in two files based on what operator was clicked on the calculator panel
             // BasicFunctions.java
             // ScientificFunctions.java
 
-        // if you hit a number 0-9 or a decimal
+        ///////////////////////
+        ///////////////////////
+        // NUMBERS AND DECIMAL
+        ///////////////////////
+        ///////////////////////
         if ((in.charAt(0) >= '0' && in.charAt(0) <= '9') || in.equals(".")) {
             if (!operator.equals("")) {
                 if (operand2.equals("")) {
@@ -294,7 +297,11 @@ public class MainApplication implements ActionListener {
                 display.setText(operand);
             }
         }
-        // else if you hit Rad/Deg toggle
+        /////////////////////////
+        /////////////////////////
+        // RADIAN / DEGREE TOGGLE
+        /////////////////////////
+        /////////////////////////
         else if (in.equals("Rad") || in.equals("Deg")) {
             this.switchUnitsMode();
             if (buttonRad.getText().equals("Rad")) {
@@ -304,7 +311,11 @@ public class MainApplication implements ActionListener {
                 buttonRad.setText("Rad");
             }
         }
-        // else if you hit the invert sign button
+        /////////////////////////
+        /////////////////////////
+        // INVERT SIGN TOGGLE
+        /////////////////////////
+        /////////////////////////
         else if (in.equals("+/-")) {
             if (!operand4.equals("")) {
                 operand4 = BasicFunctions.invertSign(Double.parseDouble(operand4));
@@ -323,7 +334,11 @@ public class MainApplication implements ActionListener {
                 display.setText(operand);
             }
         }
-        // else if you hit the =, do some math,
+        /////////////////////////
+        /////////////////////////
+        // EQUALS SIGN
+        /////////////////////////
+        /////////////////////////
         else if (in.equals("=")) {
             // if operator3 is loaded
             if (!operator3.equals("") && !operand4.equals("")) {
@@ -344,11 +359,19 @@ public class MainApplication implements ActionListener {
                 setDisplayAndClearMemory(twoSidedMath(operand, operator, operand2));
             }
         }
-        // else if you hit C
+        /////////////////////////
+        /////////////////////////
+        // CLEAR SIGN
+        /////////////////////////
+        /////////////////////////
         else if (in.equals("C")) { // clear selected
             setDisplayAndClearMemory("0");
         }
-        // else if you hit an operator
+        /////////////////////////
+        /////////////////////////
+        // ALL OPERATORS
+        /////////////////////////
+        /////////////////////////
         else {
             // if operator takes just 1 double
                 // call the method with whatever is on the display
