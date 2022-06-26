@@ -637,12 +637,14 @@ public class MainApplication implements ActionListener {
                         // 2 + 3 * 4 *
                         operand2 = twoSidedMath(operand2, operator2, operand3);
                         operator2 = in;
+                        display.setText(operand2);
                         operand3 = "";
                     }
                     else {
                         // 2 + 3 * 4 +
                         operand = twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3));
                         operator = in;
+                        display.setText(operand);
                         operand2 = "";
                         operand3 = "";
                         operator2 = "";
