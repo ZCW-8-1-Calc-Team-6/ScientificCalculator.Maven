@@ -35,6 +35,11 @@ public class BasicFunctions {
         return Double.toString(Math.pow(x, y));
     }
 
+    public static String square(double value) {
+        double result = value * value;
+        return Double.toString(result);
+    }
+
     public static double inverse (double value) {
         return 1.0 / value;
     }
