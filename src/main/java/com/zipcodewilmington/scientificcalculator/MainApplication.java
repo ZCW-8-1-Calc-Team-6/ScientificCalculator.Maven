@@ -24,7 +24,9 @@ public class MainApplication implements ActionListener {
     String operator2 = "";
     String operator3 = "";
     String units = "degrees";
-
+    public static void main(String[] args) {
+        new MainApplication();
+    }
     public MainApplication () {
         // Ryan will work here on GUI
         f = new JFrame("Scientific Calculator");
@@ -145,10 +147,6 @@ public class MainApplication implements ActionListener {
         f.setLocationRelativeTo(null); // spawns window centered
         f.setResizable(false);
         f.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new MainApplication();
     }
 
     public void switchUnitsMode() {
