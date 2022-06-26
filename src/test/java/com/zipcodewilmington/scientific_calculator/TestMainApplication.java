@@ -1,5 +1,6 @@
 package com.zipcodewilmington.scientific_calculator;
 import com.zipcodewilmington.scientificcalculator.BasicFunctions;
+import com.zipcodewilmington.scientificcalculator.MainApplication;
 import com.zipcodewilmington.scientificcalculator.ScientificFunctions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
@@ -233,6 +234,14 @@ public class TestMainApplication {
     void factorialTest2() {
         ScientificFunctions calculator = new ScientificFunctions();
         assertEquals(2, ScientificFunctions.factorial(2));
+    }
+
+    @Test
+    void getTextFromField() {
+        String calculator = new MainApplication().getTextField();
+        String expectedResults = "0";
+
+        assertEquals(expectedResults, calculator);
     }
 
 }
