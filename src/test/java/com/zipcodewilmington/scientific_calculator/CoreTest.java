@@ -87,20 +87,26 @@ public class CoreTest {
 
         assertEquals(expectedResults,results,1.14285714286712);
     }
-//
-//    //Squaring Tests
-//    @Test
-//    void squareSix(){
-//        BasicFunctions calculator = new BasicFunctions();
-//        assertEquals(36.0, BasicFunctions.square(36.0));
-//    }
-//
-//    @Test
-//    void squareTen(){
-//        BasicFunctions calculator = new BasicFunctions();
-//        assertEquals(100.0, BasicFunctions.square(10.0));
-//    }
-//
+
+    //Squaring Tests
+    @Test
+    void squareTest1(){
+        double expectedResults = 36;
+        String str1 = BasicFunctions.square(6.0);
+        double results = Double.parseDouble(str1);
+
+        assertEquals(expectedResults,results);
+    }
+
+    @Test
+    void squareTest2(){
+        double expectedResults = 100;
+        String str1 = BasicFunctions.square(10);
+        double results = Double.parseDouble(str1);
+
+        assertEquals(expectedResults,results,1.14285714286712);
+    }
+
     //Sqrt Tests
     @Test
     void sqrtTest1(){
