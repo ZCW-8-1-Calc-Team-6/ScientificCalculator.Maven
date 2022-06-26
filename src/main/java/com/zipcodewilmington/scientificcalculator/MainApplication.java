@@ -214,7 +214,7 @@ public class MainApplication implements ActionListener {
             // BasicFunctions.java
             // ScientificFunctions.java
 
-        // if you hit (a number or .)
+        // if you hit a number 0-9 or a decimal
         if ((in.charAt(0) >= '0' && in.charAt(0) <= '9') || in.equals(".")) {
             if (!operator.equals("")) {
                 if (operand2.equals("")) {
@@ -231,7 +231,7 @@ public class MainApplication implements ActionListener {
                             // decimal logic
                             if (!operand2.contains(".")) {
                                 operand2 += ".";
-                                display.setText(operand);
+                                display.setText(operand2);
                             }
                         } else {
                             if (this.getTextField().equals("0") && in.charAt(0) > '0') {
@@ -250,21 +250,39 @@ public class MainApplication implements ActionListener {
                         }
                         display.setText(operand3);
                     } else {
-                        // e.g. 2 + 3 * 4
-                        // **
-                        if (in.equals(".")) {
-                            // decimal logic
-                            if (!operand3.contains(".")) {
-                                operand3 += ".";
-                                display.setText(operand);
+                        if (operator3.equals("")) {
+                            // e.g. 2 + 3 * 4
+                            // **
+                            if (in.equals(".")) {
+                                // decimal logic
+                                if (!operand3.contains(".")) {
+                                    operand3 += ".";
+                                    display.setText(operand3);
+                                }
+                            } else {
+                                if (this.getTextField().equals("0") && in.charAt(0) > '0') {
+                                    operand3 = in;
+                                } else if (!this.getTextField().equals("0")) {
+                                    operand3 += in;
+                                }
+                                display.setText(operand3);
                             }
-                        } else {
-                            if (this.getTextField().equals("0") && in.charAt(0) > '0') {
-                                operand3 = in;
-                            } else if (!this.getTextField().equals("0")) {
-                                operand3 += in;
+                        }
+                        else {
+                            if (in.equals(".")) {
+                                // decimal logic
+                                if (!operand4.contains(".")) {
+                                    operand4 += ".";
+                                    display.setText(operand4);
+                                }
+                            } else {
+                                if (this.getTextField().equals("0") && in.charAt(0) > '0') {
+                                    operand4 = in;
+                                } else if (!this.getTextField().equals("0")) {
+                                    operand4 += in;
+                                }
+                                display.setText(operand4);
                             }
-                            display.setText(operand3);
                         }
                     }
                 }
