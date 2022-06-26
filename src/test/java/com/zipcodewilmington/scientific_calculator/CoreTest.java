@@ -91,18 +91,16 @@ public class CoreTest {
     //Squaring Tests
     @Test
     void squareTest1(){
-        double expectedResults = 36;
-        String str1 = BasicFunctions.square(6.0);
-        double results = Double.parseDouble(str1);
+        double expectedResults = 36.0;
+        double results = BasicFunctions.square(6.0);
 
         assertEquals(expectedResults,results);
     }
 
     @Test
     void squareTest2(){
-        double expectedResults = 100;
-        String str1 = BasicFunctions.square(10);
-        double results = Double.parseDouble(str1);
+        double expectedResults = 100.0;
+        double results = BasicFunctions.square(10.0);
 
         assertEquals(expectedResults,results,1.14285714286712);
     }
