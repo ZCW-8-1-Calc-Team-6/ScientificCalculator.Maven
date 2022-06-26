@@ -6,9 +6,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by leon on 2/9/18.
- */
 public class MainApplication implements ActionListener {
 
     JFrame f;
@@ -18,13 +15,17 @@ public class MainApplication implements ActionListener {
     //
     // the calculator will operate on either one or two input numbers
     // if the user enters 2 + 3
-    // it will be generalized to operandLeft operator operandRight
+    // it will be generalized to operandLeft operator operand2
     //
     // some operators or functions of the calculator only need one operand and
     //      that will be stored in operandLeft
-    String operandLeft = "0";
-    String operandRight = "";
+    String operand = "0";
+    String operand2 = "";
+    String operand3 = "";
+    String operand4 = "";
     String operator = "";
+    String operator2 = "";
+    String operator3 = "";
     String units = "degrees";
 
     public MainApplication () {
@@ -97,7 +98,7 @@ public class MainApplication implements ActionListener {
         f.add(p);
         //f.pack(); may be used instead of setSize? might want to look into layouts
         f.setSize(800, 400);
-        display.setText(this.operandLeft);
+        display.setText(this.operand);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null); // spawns window centered
         //f.setResizable(false);
@@ -137,21 +138,113 @@ public class MainApplication implements ActionListener {
         // this will call methods in two files
         // based on what operator was clicked on the calculator panel
 
-        if (in.charAt(0) >= '0' && in.charAt(0) <= '9'){
-            if (this.getTextField().equals("0") && in.charAt(0) > '0') {
-                operandLeft = in;
-                display.setText(in);
+        // if you hit (a number or .)
+        if ((in.charAt(0) >= '0' && in.charAt(0) <= '9') || in.charAt(0) == '.') {
+            if (!operator.equals("")) {
+                if (operand2.equals("")) {
+                    if (in.equals(".")) {
+                        operand2 = "0.0";
+                    } else {
+                        operand2 = in;
+                    }
+                    display.setText(operand2);
+                } else {
+                    if (operator2.equals("")) {
+                        // e.g. 2 + 3
+                        if (in.equals(".")) {
+                            // decimal logic
+                            // **
+                        } else {
+                            if (this.getTextField().equals("0") && in.charAt(0) > '0') {
+                                operand2 = in;
+                                display.setText(in);
+                            } else if (!this.getTextField().equals("0")) {
+                                operand2 += in;
+                                display.setText(operand2);
+                            }
+                        }
+                    } else if (operand3.equals("")) {
+                        // e.g. 2 + 3 * ?
+                        if (in.equals(".")) {
+                            operand3 = "0.0";
+                        } else {
+                            operand3 = in;
+                        }
+                        display.setText(operand3);
+                    } else {
+                        // e.g. 2 + 3 * 4
+                        // **
+                        if (in.equals(".")) {
+                            // decimal logic
+                        } else {
+                            if (this.getTextField().equals("0") && in.charAt(0) > '0') {
+                                operand3 = in;
+                                display.setText(in);
+                            } else if (!this.getTextField().equals("0")) {
+                                operand3 += in;
+                                display.setText(operand3);
+                            }
+                        }
+                    }
+                }
             }
-            else if (!this.getTextField().equals("0")) {
-                operandLeft += in;
-                display.setText(operandLeft);
+            // else operator is empty
+            else if (in.charAt(0) == '.') {
+                // decimal logic
+            } else {
+                if (this.getTextField().equals("0") && in.charAt(0) > '0') {
+                    operand = in;
+                    display.setText(in);
+                } else if (!this.getTextField().equals("0")) {
+                    operand += in;
+                    display.setText(operand);
+                }
             }
         }
+        // else if you hit an operator
+            // if operator takes a single number
+                // call the method with whatever is on the display
+                // display the result
+                // clear the operator, right side, and left side?
+            // else if right side is empty
+                // set the operator to corresponding value
+            // else (you hit a second two-sided operator with two numbers stored!)
+                // if second operator is same or less in priority
+                    // display the two-sided math based on what's already stored in operator
+                    // set the operator to new operator input
+                    // set
+                // else (second operator has order priority)
+                    // stores the second operator
+                // ??? some third operator business!
+        // else if you hit C
         else if (in.charAt(0) == 'C') { // clear selected
             operator = "";
-            operandLeft = "0";
-            operandRight = "";
-            display.setText(operandLeft);
+            operator2 = "";
+            operator3 = "";
+            operand2 = "";
+            operand3 = "";
+            operand4 = "";
+            operand = "0";
+            display.setText(operand);
+        }
+        // else you the =, do some math,
+        else {
+            // if operator3 is loaded
+            if (!operator3.equals("") && !operand4.equals("")) {
+                // 2 + 3 * 4 ^ 5 =
+            }
+            // if operator2 is loaded
+                // do operator 2 math first and then operator 1 math
+            else if (!operator2.equals("") && !operand3.equals("")) {
+                // 2 + 3 * 4
+                // **
+            }
+            // else ( operator1 is loaded )
+                // display two sided answer
+                // reset all fields?
+            else if (!operator.equals("") && !operand2.equals("")){
+                // 2 + 3
+            }
         }
     }
 }
