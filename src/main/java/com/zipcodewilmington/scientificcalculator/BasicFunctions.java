@@ -34,7 +34,7 @@ public class BasicFunctions {
         return Math.pow(x ,y );
     }
     public static double inverse (double value) {
-        return -1.0 / value;
+        return 1.0 / value;
     }
 
 }
