@@ -24,7 +24,9 @@ public class MainApplication implements ActionListener {
     String operator2 = "";
     String operator3 = "";
     String units = "degrees";
-
+    public static void main(String[] args) {
+        new MainApplication();
+    }
     public MainApplication () {
         // Ryan will work here on GUI
         f = new JFrame("Scientific Calculator");
@@ -147,25 +149,21 @@ public class MainApplication implements ActionListener {
         f.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        new MainApplication();
-    }
-
     public void switchUnitsMode() {
-        if (this.units.equals("degrees")) {
-            this.units = "radians";
+        if (units.equals("degrees")) {
+            units = "radians";
         }
         else {
-            this.units = "degrees";
+            units = "degrees";
         }
     }
 
     public void switchUnitsMode(String s) {
         if (s.equals("degrees")) {
-            this.units = "degrees";
+            units = "degrees";
         }
         else {
-            this.units = "radians";
+            units = "radians";
         }
     }
 
@@ -184,26 +182,19 @@ public class MainApplication implements ActionListener {
         this.operator3 = "";
     }
 
-//    public String twoSidedMath(String leftSide, String operator, String rightSide) {
-//        double leftSideNum = Double.parseDouble(leftSide);
-//        double rightSideNum = Double.parseDouble(rightSide);
-//
-//        if (operator.equals("+")) {
-//            return BasicFunctions.add(leftSideNum, rightSideNum);
-//        }
-//        else if (operator.equals("-")) {
-//            return BasicFunctions.substract(leftSideNum, rightSideNum);
-//        }
-//        else if (operator.equals("*")) {
-//            return BasicFunctions.multiply(leftSideNum, rightSideNum);
-//        }
-//        else if (operator.equals("/")) {
-//            return BasicFunctions.divide(leftSideNum, rightSideNum);
-//        }
-//        else if (operator.equals("^")) {
-//            return BasicFunctions.exponentiation(leftSideNum, rightSideNum);
-//        }
-//    }
+    public String twoSidedMath(String leftSide, String operator, String rightSide) {
+        double leftSideNum = Double.parseDouble(leftSide);
+        double rightSideNum = Double.parseDouble(rightSide);
+
+        return switch (operator) {
+            case "+" -> BasicFunctions.add(leftSideNum, rightSideNum);
+            case "-" -> BasicFunctions.subtract(leftSideNum, rightSideNum);
+            case "*" -> BasicFunctions.multiply(leftSideNum, rightSideNum);
+            case "/" -> BasicFunctions.divide(leftSideNum, rightSideNum);
+//            case "^" -> BasicFunctions.exponentiation(leftSideNum, rightSideNum);
+            default -> "0.00";
+        };
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -314,43 +305,43 @@ public class MainApplication implements ActionListener {
             }
         }
         // else if you hit the invert sign button
-//        else if (in.equals("+/-")) {
-//            if (!operand4.equals("")) {
-                  // operand4 = ScientificFunctions.invertSign(Double.parseDouble(operand4);
-//                // display.setText(operand4);
-//            }
-//            else if (!operand3.equals("")) {
-//                // operand3 = ScientificFunctions.invertSign(Double.parseDouble(operand3);
-//                // display.setText(operand3);
-//            }
-//            else if (!operand2.equals("")) {
-//                // operand2 = ScientificFunctions.invertSign(Double.parseDouble(operand2);
-//                // display.setText(operand2);
-//            }
-//            else {
-//                // operand = ScientificFunctions.invertSign(Double.parseDouble(operand);
-//                // display.setText(operand);
-//            }
-//        }
+        else if (in.equals("+/-")) {
+            if (!operand4.equals("")) {
+                operand4 = BasicFunctions.invertSign(Double.parseDouble(operand4));
+                display.setText(operand4);
+            }
+            else if (!operand3.equals("")) {
+                operand3 = BasicFunctions.invertSign(Double.parseDouble(operand3));
+                display.setText(operand3);
+            }
+            else if (!operand2.equals("")) {
+                operand2 = BasicFunctions.invertSign(Double.parseDouble(operand2));
+                display.setText(operand2);
+            }
+            else {
+                operand = BasicFunctions.invertSign(Double.parseDouble(operand));
+                display.setText(operand);
+            }
+        }
         // else if you hit the =, do some math,
         else if (in.equals("=")) {
             // if operator3 is loaded
             if (!operator3.equals("") && !operand4.equals("")) {
                 // 2 + 3 * 4 ^ 5 =
-//                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, twoSidedMath(operand3, operator3, operand4))));
+                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, twoSidedMath(operand3, operator3, operand4))));
             }
             // if operator2 is loaded
             // do operator 2 math first and then operator 1 math
             else if (!operator2.equals("") && !operand3.equals("")) {
                 // 2 + 3 * 4 =
-//                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3)));
+                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3)));
             }
             // else ( operator1 is loaded )
             // display two-sided answer
             // reset all fields?
             else if (!operator.equals("") && !operand2.equals("")){
                 // 2 + 3 =
-//                setDisplayAndClearMemory(twoSidedMath(operand, operator, operand2));
+                setDisplayAndClearMemory(twoSidedMath(operand, operator, operand2));
             }
         }
         // else if you hit C
@@ -400,11 +391,13 @@ public class MainApplication implements ActionListener {
                         // set operator to input
                         // set operand to what's on display
                         // clear the operator2 and operand2
+                        // 2 + 3 * 5
+                        // 2 + 3 ^ 5
                 if ((operator2.equals("^")) ||
-                        (((operator2.equals("*")) || (operator2.equals("/"))) && (!operator.equals("+")) || (!operator.equals("-"))) ||
+                        (((operator2.equals("*")) || (operator2.equals("/"))) && ((!operator.equals("+")) && (!operator.equals("-")))) ||
                         ( (operator2.equals("+")) || (operator2.equals("-")) )
                         ) {
-//                    display.setText(twoSidedMath(operand, operator, operand2));
+                    display.setText(twoSidedMath(operand, operator, operand2));
                     operand = display.getText();
                     operator = in;
                     operand2 = "";
@@ -423,13 +416,13 @@ public class MainApplication implements ActionListener {
                 else {
                     if (in.equals("*") || in.equals("/")) {
                         // 2 + 3 * 4 *
-//                        operand2 = twoSidedMath(operand2, operator2, operand3);
+                        operand2 = twoSidedMath(operand2, operator2, operand3);
                         operator2 = in;
                         operand3 = "";
                     }
                     else {
                         // 2 + 3 * 4 +
-//                        operand = twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3));
+                        operand = twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3));
                         operator = in;
                         operand2 = "";
                         operand3 = "";
