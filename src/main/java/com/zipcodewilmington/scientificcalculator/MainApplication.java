@@ -169,6 +169,17 @@ public class MainApplication implements ActionListener {
         return this.display.getText();
     }
 
+    public void setDisplayAndClearMemory(String newDisplayValue) {
+        this.operand = newDisplayValue;
+        this.display.setText(this.operand);
+        this.operand2 = "";
+        this.operand3 = "";
+        this.operand4 = "";
+        this.operator = "";
+        this.operator2 = "";
+        this.operator3 = "";
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String in = e.getActionCommand();
@@ -278,14 +289,7 @@ public class MainApplication implements ActionListener {
         }
         // else if you hit C
         else if (in.charAt(0) == 'C') { // clear selected
-            operator = "";
-            operator2 = "";
-            operator3 = "";
-            operand2 = "";
-            operand3 = "";
-            operand4 = "";
-            operand = "0";
-            display.setText(operand);
+            setDisplayAndClearMemory("0");
         }
         // else if you hit an operator
         else {
@@ -293,7 +297,8 @@ public class MainApplication implements ActionListener {
                 // call the method with whatever is on the display
                 // display the result
                 // clear everything, set operand to
-            if (in.charAt(0) == 's' || in.charAt(0) == 'c' || in.charAt(0) == 't' || in.charAt(0) == 'a') {
+            if (in.charAt(0) == 's' || in.charAt(0) == 'c' || in.charAt(0) == 't' || in.charAt(0) == 'a'
+                || in.charAt(0) == 'i' || in.charAt(0) == 'l') {
                 double d = switch (in) {
                     case "sin()" -> ScientificFunctions.sin(Double.parseDouble(display.getText()), units);
                     case "cos()" -> ScientificFunctions.cos(Double.parseDouble(display.getText()), units);
@@ -301,25 +306,19 @@ public class MainApplication implements ActionListener {
                     case "asin()" -> ScientificFunctions.asin(Double.parseDouble(display.getText()), units);
                     case "acos()" -> ScientificFunctions.acos(Double.parseDouble(display.getText()), units);
                     case "atan()" -> ScientificFunctions.atan(Double.parseDouble(display.getText()), units);
+                    case "log" -> ScientificFunctions.log(Double.parseDouble(display.getText()));
+                    case "ilog" -> ScientificFunctions.inverseLog(Double.parseDouble(display.getText()));
+                    case "ln" -> ScientificFunctions.naturalLog(Double.parseDouble(display.getText()));
+                    case "iln" -> ScientificFunctions.inverseNaturalLog(Double.parseDouble(display.getText()));
                     default -> 0.0;
                 };
                 display.setText(Double.toString(d));
-                operand = display.getText();
-                operand2 = "";
-                operand3 = "";
-                operator = "";
-                operator2 = "";
-                operator3 = "";
+                setDisplayAndClearMemory(display.getText());
             }
             else if (in.charAt(0) == '!') {
                 long l = ScientificFunctions.factorial(Integer.parseInt(display.getText()));
                 display.setText(Long.toString(l));
-                operand = display.getText();
-                operand2 = "";
-                operand3 = "";
-                operator = "";
-                operator2 = "";
-                operator3 = "";
+                setDisplayAndClearMemory(display.getText());
             }
             // else if operand2 is empty
                 // set the operator to corresponding value
