@@ -30,13 +30,11 @@ public class BasicFunctions {
         value = value * -1.0;
         return (Double.toString(value));
     }
-
-    public static double Pow(double num, int exp) {
-        double result = 1;
-        for (int i = 0; i < exp; i++) {
-            result *= num;
-        }
-        return result;
+    public static double pow(double x, double y) {
+        return Math.pow(x ,y );
+    }
+    public static double inverse (double value) {
+        return -1.0 / value;
     }
 
 }
