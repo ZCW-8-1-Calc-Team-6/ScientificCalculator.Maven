@@ -15,7 +15,7 @@ public class MainApplication implements ActionListener {
             buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply,
             buttonDivide, buttonSin, buttonRad, buttonCos, buttonTan, buttonASin, buttonACos, buttonATan,
             buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN, buttonInvertSign, buttonSqrt,
-            buttonYellow, buttonMint, buttonSkyBlue, buttonLavender, buttonPow, buttonInverse;
+            buttonYellow, buttonMint, buttonSkyBlue, buttonLavender, buttonPow, buttonInverse, buttonSquare;
 
     Color gray = new Color(60,60,60);
     Color softYellow = new Color(232, 212, 142);
@@ -70,6 +70,7 @@ public class MainApplication implements ActionListener {
         buttonACos = new JButton("acos()");
         buttonATan = new JButton("atan()");
         buttonFactorial = new JButton("!");
+        buttonSquare = new JButton("x^2");
         buttonPow = new JButton("^");
         buttonLog = new JButton("log");
         buttonILog = new JButton("ilog");
@@ -212,6 +213,9 @@ public class MainApplication implements ActionListener {
         c.gridx = 0;
         gbl.setConstraints(buttonInverse, c);
         p.add(buttonInverse);
+        c.gridx = 1;
+        gbl.setConstraints(buttonSquare, c);
+        p.add(buttonSquare);
 
         c.gridy = 10;
         c.gridx = 0;
@@ -260,6 +264,7 @@ public class MainApplication implements ActionListener {
         buttonILogN.addActionListener(this);
         buttonInvertSign.addActionListener(this);
         buttonInverse.addActionListener(this);
+        buttonSquare.addActionListener(this);
         buttonSqrt.addActionListener(this);
         buttonYellow.addActionListener(this);
         buttonMint.addActionListener(this);
@@ -303,6 +308,7 @@ public class MainApplication implements ActionListener {
         buttonMint.setBorder(calcBorder);
         buttonSkyBlue.setBorder(calcBorder);
         buttonLavender.setBorder(calcBorder);
+        buttonSquare.setBorder(calcBorder);
 
         try {
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
@@ -580,7 +586,7 @@ public class MainApplication implements ActionListener {
                 // display the result
                 // clear everything, set operand to
             if (in.equals("sin()") || in.equals("cos()") || in.equals("tan()") || in.charAt(0) == 'a'
-                || in.charAt(0) == 'i' || in.charAt(0) == 'l' || in.equals("sqrt")) {
+                || in.charAt(0) == 'i' || in.charAt(0) == 'l' || in.equals("sqrt") || in.equals("x^2")) {
                 double d = switch (in) {
                     case "sin()" -> ScientificFunctions.sin(Double.parseDouble(display.getText()), units);
                     case "cos()" -> ScientificFunctions.cos(Double.parseDouble(display.getText()), units);
@@ -594,6 +600,7 @@ public class MainApplication implements ActionListener {
                     case "iln" -> ScientificFunctions.inverseNaturalLog(Double.parseDouble(display.getText()));
                     case "sqrt" -> BasicFunctions.sqrt(Double.parseDouble(display.getText()));
                     case "inv" -> BasicFunctions.inverse(Double.parseDouble(display.getText()));
+                    case "x^2" -> BasicFunctions.square(Double.parseDouble(display.getText()));
                     default -> 0.00;
                 };
                 display.setText(Double.toString(d));
