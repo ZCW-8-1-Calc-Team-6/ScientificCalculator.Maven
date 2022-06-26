@@ -359,7 +359,7 @@ public class MainApplication implements ActionListener {
         }
         // else if you hit an operator
         else {
-            // if operator takes a single number
+            // if operator takes just 1 double
                 // call the method with whatever is on the display
                 // display the result
                 // clear everything, set operand to
@@ -393,7 +393,8 @@ public class MainApplication implements ActionListener {
                 operator = in;
             }
             // else (you hit a second two-sided operator with two numbers stored!)
-            else {
+            else if (operand3.equals("")) {
+                // 2 + 3 ?
                 // if second operator is same or less in priority
                     // display the two-sided math based on what's already stored in operator
                         // set operator to input
@@ -411,7 +412,30 @@ public class MainApplication implements ActionListener {
                 }
                 // else (second operator has order priority)
                     // stores the second operator
-                // ??? some third operator business!
+                else {
+                    operator2 = in;
+                }
+            }
+            else { // 2 + 3 * 4 ?
+                if (in.equals("^")) {
+                    operator3 = in;
+                }
+                else {
+                    if (in.equals("*") || in.equals("/")) {
+                        // 2 + 3 * 4 *
+//                        operand2 = twoSidedMath(operand2, operator2, operand3);
+                        operator2 = in;
+                        operand3 = "";
+                    }
+                    else {
+                        // 2 + 3 * 4 +
+//                        operand = twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3));
+                        operator = in;
+                        operand2 = "";
+                        operand3 = "";
+                        operator2 = "";
+                    }
+                }
             }
         }
     }
