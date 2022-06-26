@@ -11,11 +11,18 @@ public class MainApplication implements ActionListener {
 
     JFrame f;
     JTextField display;
+    JPanel p;
     JButton buttonDecimal, buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour,
             buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply,
             buttonDivide, buttonSin, buttonRad, buttonCos, buttonTan, buttonASin, buttonACos, buttonATan,
             buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN, buttonInvertSign, buttonSqrt,
-            buttonYellow;
+            buttonYellow, buttonMint, buttonSkyBlue, buttonLavender;
+
+    Color gray = new Color(60,60,60);
+    Color softYellow = new Color(232, 212, 142);
+    Color skyBlue = new Color(183, 208, 237);
+    Color lavender = new Color(186, 142, 191);
+    Color mint = new Color(180, 222, 186);
 
     // operands and operators
     String operand = "0";
@@ -32,14 +39,10 @@ public class MainApplication implements ActionListener {
     public MainApplication () {
         // Ryan will work here on GUI
         f = new JFrame("Scientific Calculator");
+        p = new JPanel();
         display = new JTextField();
         display.setEditable(false); // limit interaction to button clicks
 
-        Color gray = new Color(60,60,60);
-        Color softYellow = new Color(232, 212, 142);
-        Color skyBlue = new Color(183, 208, 237);
-        Color lavender = new Color(186, 142, 191);
-        Color mint = new Color(180, 222, 186);
         Border calcBorder = BorderFactory.createLineBorder(gray, 1);
 
         buttonDecimal = new JButton(".");
@@ -73,12 +76,10 @@ public class MainApplication implements ActionListener {
         buttonILogN = new JButton("iln");
         buttonInvertSign = new JButton("+/-");
         buttonSqrt = new JButton("sqrt");
-
         buttonYellow = new JButton("YE");
-
-
-        // panel setup
-        JPanel p = new JPanel();
+        buttonMint = new JButton("MI");
+        buttonSkyBlue = new JButton("SK");
+        buttonLavender = new JButton("LA");
 
         // here
         GridBagLayout gbl = new GridBagLayout();
@@ -179,8 +180,8 @@ public class MainApplication implements ActionListener {
 
         c.gridy = 7;
         c.gridx = 0;
-        gbl.setConstraints(buttonYellow, c);
-        p.add(buttonYellow);
+        //gbl.setConstraints(buttonYellow, c);
+        //p.add(buttonYellow);
         c.gridx = 1;
         gbl.setConstraints(buttonSqrt, c);
         p.add(buttonSqrt);
@@ -204,6 +205,20 @@ public class MainApplication implements ActionListener {
         c.gridx = 3;
         gbl.setConstraints(buttonILogN, c);
         p.add(buttonILogN);
+
+        c.gridy = 9;
+        c.gridx = 0;
+        gbl.setConstraints(buttonYellow, c);
+        p.add(buttonYellow);
+        c.gridx = 1;
+        gbl.setConstraints(buttonMint, c);
+        p.add(buttonMint);
+        c.gridx = 2;
+        gbl.setConstraints(buttonSkyBlue, c);
+        p.add(buttonSkyBlue);
+        c.gridx = 3;
+        gbl.setConstraints(buttonLavender, c);
+        p.add(buttonLavender);
 
         // listening to button clicks
         buttonDecimal.addActionListener(this);
@@ -238,6 +253,9 @@ public class MainApplication implements ActionListener {
         buttonInvertSign.addActionListener(this);
         buttonSqrt.addActionListener(this);
         buttonYellow.addActionListener(this);
+        buttonMint.addActionListener(this);
+        buttonSkyBlue.addActionListener(this);
+        buttonLavender.addActionListener(this);
 
         buttonDecimal.setBorder(calcBorder);
         buttonEquals.setBorder(calcBorder);
@@ -271,6 +289,9 @@ public class MainApplication implements ActionListener {
         buttonInvertSign.setBorder(calcBorder);
         buttonSqrt.setBorder(calcBorder);
         buttonYellow.setBorder(calcBorder);
+        buttonMint.setBorder(calcBorder);
+        buttonSkyBlue.setBorder(calcBorder);
+        buttonLavender.setBorder(calcBorder);
 
         try {
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
@@ -281,7 +302,15 @@ public class MainApplication implements ActionListener {
         buttonYellow.setOpaque(true);
         buttonYellow.setBackground(softYellow);
         buttonYellow.setForeground(softYellow);
-        buttonYellow.setBorder(calcBorder);
+        buttonMint.setOpaque(true);
+        buttonMint.setBackground(mint);
+        buttonMint.setForeground(mint);
+        buttonSkyBlue.setOpaque(true);
+        buttonSkyBlue.setBackground(skyBlue);
+        buttonSkyBlue.setForeground(skyBlue);
+        buttonLavender.setOpaque(true);
+        buttonLavender.setBackground(lavender);
+        buttonLavender.setForeground(lavender);
 
         p.setBackground(lavender);
         f.add(p);
@@ -291,7 +320,7 @@ public class MainApplication implements ActionListener {
         display.setText(operand);
         Font displayFont = new Font("SansSerif", Font.BOLD, 24);
         display.setFont(displayFont);
-        display.setForeground(new Color(100,100,100));
+        display.setForeground(Color.darkGray);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null); // spawns window centered
         f.setResizable(false);
@@ -317,18 +346,18 @@ public class MainApplication implements ActionListener {
     }
 
     public String getTextField() {
-        return this.display.getText();
+        return display.getText();
     }
 
     public void setDisplayAndClearMemory(String newDisplayValue) {
-        this.operand = newDisplayValue;
-        this.display.setText(this.operand);
-        this.operand2 = "";
-        this.operand3 = "";
-        this.operand4 = "";
-        this.operator = "";
-        this.operator2 = "";
-        this.operator3 = "";
+        operand = newDisplayValue;
+        display.setText(operand);
+        operand2 = "";
+        operand3 = "";
+        operand4 = "";
+        operator = "";
+        operator2 = "";
+        operator3 = "";
     }
 
     public String twoSidedMath(String leftSide, String operator, String rightSide) {
@@ -518,6 +547,23 @@ public class MainApplication implements ActionListener {
         }
         /////////////////////////
         /////////////////////////
+        // COLORS
+        /////////////////////////
+        /////////////////////////
+        else if (in.equals("YE") || in.equals("LA") || in.equals("MI") || in.equals("SK")) {
+            switch (in) {
+                case "YE": p.setBackground(softYellow);
+                    break;
+                case "LA": p.setBackground(lavender);
+                    break;
+                case "MI": p.setBackground(mint);
+                    break;
+                case "SK": p.setBackground(skyBlue);
+                    break;
+            }
+        }
+        /////////////////////////
+        /////////////////////////
         // ALL OPERATORS
         /////////////////////////
         /////////////////////////
@@ -604,5 +650,6 @@ public class MainApplication implements ActionListener {
                 }
             }
         }
+
     }
 }
