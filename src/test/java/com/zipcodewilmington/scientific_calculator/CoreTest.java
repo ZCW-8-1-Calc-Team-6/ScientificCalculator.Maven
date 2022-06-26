@@ -29,7 +29,6 @@ public class CoreTest {
         double results = Double.parseDouble(str1);
 
         assertEquals(expectedResults,results);
-        //assertEquals(7.0, BasicFunctions.add(5.0, 2.0));
     }
 
     //Subtraction Tests
