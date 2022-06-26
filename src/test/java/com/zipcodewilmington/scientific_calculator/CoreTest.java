@@ -105,8 +105,8 @@ public class CoreTest {
     @Test
     void sqrtTest1(){
         double expectedResults = 10.0;
-        String str1 = BasicFunctions.sqrt(100.0);
-        double results = Double.parseDouble(str1);
+        double results = BasicFunctions.sqrt(100.0);
+
 
         assertEquals(expectedResults,results);
     }
@@ -114,24 +114,46 @@ public class CoreTest {
     @Test
     void sqrtTest2(){
         double expectedResults = 3.872983346207417;
-        String str1 = BasicFunctions.sqrt(15.0);
-        double results = Double.parseDouble(str1);
+        double results = BasicFunctions.sqrt(15.0);
+
 
         assertEquals(expectedResults,results,3.8729833462074);
     }
 //
 //    //Variable exponentiation
-//    @Test
-//    void varExpOneHundred(){
-//        BasicFunctions calculator = new BasicFunctions();
-//        assertEquals(10.0, BasicFunctions.exp(100.0));
-//    }
+    @Test
+    void varExpTest1(){
+        double expectedResults = 2097152.0;
+        String str1 = BasicFunctions.pow(8.0,7.0);
+        double results = Double.parseDouble(str1);
 
-    //    @Test
-//    void inverseNum(){
-//        BasicFunctions calculator = new BasicFunctions();
-//        assertEquals(-5.0, BasicFunctions.inverseNum(5.0));
-//    }
+        assertEquals(expectedResults,results);
+    }
+
+    @Test
+    void varExpTest2(){
+        double expectedResults = 8.0;
+        String str1 = BasicFunctions.pow(2.0,3.0);
+        double results = Double.parseDouble(str1);
+
+        assertEquals(expectedResults,results);
+    }
+
+        @Test
+    void inverseNum1(){
+            double expectedResults = 0.01;
+            double results = BasicFunctions.inverse(100.0);
+
+            assertEquals(expectedResults,results);
+    }
+
+    @Test
+    void inverseNum2(){
+        double expectedResults = 0.07142857142857142;
+        double results = BasicFunctions.inverse(14.0);
+
+        assertEquals(expectedResults,results);
+    }
 
         @Test
     void inverseSignTest1(){
