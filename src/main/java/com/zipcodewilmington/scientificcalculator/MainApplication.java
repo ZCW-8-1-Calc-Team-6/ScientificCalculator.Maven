@@ -13,7 +13,7 @@ public class MainApplication implements ActionListener {
     JButton buttonDecimal, buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour,
             buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply,
             buttonDivide, buttonSin, buttonRad, buttonCos, buttonTan, buttonASin, buttonACos, buttonATan,
-            buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN;
+            buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN, buttonInvertSign;
 
     // operands and operators
     String operand = "0";
@@ -60,6 +60,7 @@ public class MainApplication implements ActionListener {
         buttonILog = new JButton("ilog");
         buttonLogN = new JButton("ln");
         buttonILogN = new JButton("iln");
+        buttonInvertSign = new JButton("+/-");
 
         // panel setup
         JPanel p = new JPanel();
@@ -101,6 +102,8 @@ public class MainApplication implements ActionListener {
         p.add(buttonLogN);
         p.add(buttonILogN);
 
+        p.add(buttonInvertSign);
+
         // listening to button clicks
         buttonDecimal.addActionListener(this);
         buttonEquals.addActionListener(this);
@@ -131,6 +134,7 @@ public class MainApplication implements ActionListener {
         buttonLogN.addActionListener(this);
         buttonILog.addActionListener(this);
         buttonILogN.addActionListener(this);
+        buttonInvertSign.addActionListener(this);
 
         p.setBackground(new Color(186, 142, 191));
         f.add(p);
@@ -186,6 +190,8 @@ public class MainApplication implements ActionListener {
 
         // this will call methods in two files
         // based on what operator was clicked on the calculator panel
+            // BasicFunctions.java
+            // ScientificFunctions.java
 
         // if you hit (a number or .)
         if ((in.charAt(0) >= '0' && in.charAt(0) <= '9') || in.charAt(0) == '.') {
@@ -268,6 +274,25 @@ public class MainApplication implements ActionListener {
                 buttonRad.setText("Rad");
             }
         }
+        // else if you hit the invert sign button
+        else if (in.equals("+/-")) {
+            if (!operand4.equals("")) {
+                Double.parseDouble(operand4) * -1.0;
+                display.setText(operand4);
+            }
+            else if () {
+                operand3 = Double.toString(operand3) * -1.0;
+                display.setText(operand3);
+            }
+            else if () {
+                operand2 = Double.toString(operand2) * -1.0;
+                display.setText(operand2);
+            }
+            else {
+                operand = Double.toString(operand) * -1.0;
+                display.setText(operand);
+            }
+        }
         // else if you hit the =, do some math,
         else if (in.charAt(0) == '=') {
             // if operator3 is loaded
@@ -310,7 +335,7 @@ public class MainApplication implements ActionListener {
                     case "ilog" -> ScientificFunctions.inverseLog(Double.parseDouble(display.getText()));
                     case "ln" -> ScientificFunctions.naturalLog(Double.parseDouble(display.getText()));
                     case "iln" -> ScientificFunctions.inverseNaturalLog(Double.parseDouble(display.getText()));
-                    default -> 0.0;
+                    default -> 0.00;
                 };
                 display.setText(Double.toString(d));
                 setDisplayAndClearMemory(display.getText());
