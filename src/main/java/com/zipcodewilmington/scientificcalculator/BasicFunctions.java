@@ -28,7 +28,7 @@ public class BasicFunctions {
 
     public static String invertSign(double value) {
         value = value * -1.0;
-        return Double.parseDouble(Double.toString(value));
+        return (Double.toString(value));
     }
 
     public static double Pow(double num, int exp) {
@@ -39,7 +39,7 @@ public class BasicFunctions {
         return result;
     }
 
-    public static double sqrt(double, number) {
+    public static double sqrt(double number) {
         double x = 0;
         double answer = Math.sqrt(Math.pow(x, 2));
     }
