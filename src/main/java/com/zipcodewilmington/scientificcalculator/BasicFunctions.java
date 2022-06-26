@@ -39,10 +39,6 @@ public class BasicFunctions {
         return result;
     }
 
-    public static double sqrt(double number) {
-        double x = 0;
-        double answer = Math.sqrt(Math.pow(x, 2));
-    }
 }
 
 
