@@ -31,11 +31,12 @@ public class MainApplication implements ActionListener {
     public MainApplication () {
         // Ryan will work here on GUI
         f = new JFrame("Scientific Calculator");
-        display = new JTextField(20);
+        display = new JTextField(18);
         display.setEditable(false); // limit interaction to button clicks
 
-        JButton buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply, buttonDivide, buttonSin;
+        JButton buttonDecimal, buttonEquals, buttonClear, buttonZero, buttonOne, buttonTwo, buttonThree, buttonFour, buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply, buttonDivide, buttonSin;
 
+        buttonDecimal = new JButton(".");
         buttonEquals = new JButton("=");
         buttonClear = new JButton("C");
         buttonZero = new JButton("0");
@@ -57,24 +58,31 @@ public class MainApplication implements ActionListener {
         // panel setup
         JPanel p = new JPanel();
         p.add(display);
-        p.add(buttonEquals);
         p.add(buttonClear);
-        p.add(buttonZero);
-        p.add(buttonOne);
-        p.add(buttonTwo);
-        p.add(buttonThree);
-        p.add(buttonFour);
-        p.add(buttonFive);
-        p.add(buttonSix);
+
         p.add(buttonSeven);
         p.add(buttonEight);
         p.add(buttonNine);
-        p.add(buttonPlus);
-        p.add(buttonMinus);
-        p.add(buttonMultiply);
         p.add(buttonDivide);
+
+        p.add(buttonFour);
+        p.add(buttonFive);
+        p.add(buttonSix);
+        p.add(buttonMultiply);
+
+        p.add(buttonOne);
+        p.add(buttonTwo);
+        p.add(buttonThree);
+        p.add(buttonMinus);
+
+        p.add(buttonZero);
+        p.add(buttonDecimal);
+        p.add(buttonEquals);
+        p.add(buttonPlus);
+
         p.add(buttonSin);
 
+        buttonDecimal.addActionListener(this);
         buttonEquals.addActionListener(this);
         buttonClear.addActionListener(this);
         buttonZero.addActionListener(this);
@@ -97,11 +105,11 @@ public class MainApplication implements ActionListener {
         p.setBackground(new Color(186, 142, 191));
         f.add(p);
         //f.pack(); may be used instead of setSize? might want to look into layouts
-        f.setSize(800, 400);
+        f.setSize(350, 275);
         display.setText(this.operand);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null); // spawns window centered
-        //f.setResizable(false);
+        f.setResizable(false);
         f.setVisible(true);
     }
 
