@@ -405,7 +405,15 @@ public class MainApplication implements ActionListener {
         ///////////////////////
         ///////////////////////
         if ((in.charAt(0) >= '0' && in.charAt(0) <= '9') || in.equals(".")) {
-            if (!operator.equals("")) {
+            // screen says Error?
+            if (display.getText().equals("Error")) {
+                if (in.equals(".")) {
+                    operand = "0.0";
+                } else {
+                    operand = in;
+                }
+            }
+            else if (!operator.equals("")) {
                 if (operand2.equals("")) {
                     if (in.equals(".")) {
                         operand2 = "0.0";
@@ -512,21 +520,20 @@ public class MainApplication implements ActionListener {
         /////////////////////////
         /////////////////////////
         else if (in.equals("+/-")) {
-            if (!operand4.equals("")) {
-                operand4 = BasicFunctions.invertSign(Double.parseDouble(operand4));
-                display.setText(operand4);
-            }
-            else if (!operand3.equals("")) {
-                operand3 = BasicFunctions.invertSign(Double.parseDouble(operand3));
-                display.setText(operand3);
-            }
-            else if (!operand2.equals("")) {
-                operand2 = BasicFunctions.invertSign(Double.parseDouble(operand2));
-                display.setText(operand2);
-            }
-            else {
-                operand = BasicFunctions.invertSign(Double.parseDouble(operand));
-                display.setText(operand);
+            if  (!display.getText().equals("Error")) {
+                if (!operand4.equals("")) {
+                    operand4 = BasicFunctions.invertSign(Double.parseDouble(operand4));
+                    display.setText(operand4);
+                } else if (!operand3.equals("")) {
+                    operand3 = BasicFunctions.invertSign(Double.parseDouble(operand3));
+                    display.setText(operand3);
+                } else if (!operand2.equals("")) {
+                    operand2 = BasicFunctions.invertSign(Double.parseDouble(operand2));
+                    display.setText(operand2);
+                } else {
+                    operand = BasicFunctions.invertSign(Double.parseDouble(operand));
+                    display.setText(operand);
+                }
             }
         }
         /////////////////////////
@@ -535,23 +542,25 @@ public class MainApplication implements ActionListener {
         /////////////////////////
         /////////////////////////
         else if (in.equals("=")) {
-            // if operator3 is loaded
-            if (!operator3.equals("") && !operand4.equals("")) {
-                // 2 + 3 * 4 ^ 5 =
-                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, twoSidedMath(operand3, operator3, operand4))));
-            }
-            // if operator2 is loaded
-            // do operator 2 math first and then operator 1 math
-            else if (!operator2.equals("") && !operand3.equals("")) {
-                // 2 + 3 * 4 =
-                setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3)));
-            }
-            // else ( operator1 is loaded )
-            // display two-sided answer
-            // reset all fields?
-            else if (!operator.equals("") && !operand2.equals("")){
-                // 2 + 3 =
-                setDisplayAndClearMemory(twoSidedMath(operand, operator, operand2));
+            if  (!display.getText().equals("Error")) {
+                // if operator3 is loaded
+                if (!operator3.equals("") && !operand4.equals("")) {
+                    // 2 + 3 * 4 ^ 5 =
+                    setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, twoSidedMath(operand3, operator3, operand4))));
+                }
+                // if operator2 is loaded
+                // do operator 2 math first and then operator 1 math
+                else if (!operator2.equals("") && !operand3.equals("")) {
+                    // 2 + 3 * 4 =
+                    setDisplayAndClearMemory(twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3)));
+                }
+                // else ( operator1 is loaded )
+                // display two-sided answer
+                // reset all fields?
+                else if (!operator.equals("") && !operand2.equals("")) {
+                    // 2 + 3 =
+                    setDisplayAndClearMemory(twoSidedMath(operand, operator, operand2));
+                }
             }
         }
         /////////////////////////
@@ -581,92 +590,94 @@ public class MainApplication implements ActionListener {
         /////////////////////////
         /////////////////////////
         else {
-            // if operator takes just 1 double
+            if  (!display.getText().equals("Error")) {
+                // if operator takes just 1 double
                 // call the method with whatever is on the display
                 // display the result
                 // clear everything, set operand to
-            if (in.equals("sin()") || in.equals("cos()") || in.equals("tan()") || in.charAt(0) == 'a'
-                || in.charAt(0) == 'i' || in.charAt(0) == 'l' || in.equals("sqrt") || in.equals("x^2")) {
-                double d = switch (in) {
-                    case "sin()" -> ScientificFunctions.sin(Double.parseDouble(display.getText()), units);
-                    case "cos()" -> ScientificFunctions.cos(Double.parseDouble(display.getText()), units);
-                    case "tan()" -> ScientificFunctions.tan(Double.parseDouble(display.getText()), units);
-                    case "asin()" -> ScientificFunctions.asin(Double.parseDouble(display.getText()), units);
-                    case "acos()" -> ScientificFunctions.acos(Double.parseDouble(display.getText()), units);
-                    case "atan()" -> ScientificFunctions.atan(Double.parseDouble(display.getText()), units);
-                    case "log" -> ScientificFunctions.log(Double.parseDouble(display.getText()));
-                    case "ilog" -> ScientificFunctions.inverseLog(Double.parseDouble(display.getText()));
-                    case "ln" -> ScientificFunctions.naturalLog(Double.parseDouble(display.getText()));
-                    case "iln" -> ScientificFunctions.inverseNaturalLog(Double.parseDouble(display.getText()));
-                    case "sqrt" -> BasicFunctions.sqrt(Double.parseDouble(display.getText()));
-                    case "inv" -> BasicFunctions.inverse(Double.parseDouble(display.getText()));
-                    case "x^2" -> BasicFunctions.square(Double.parseDouble(display.getText()));
-                    default -> 0.00;
-                };
-                display.setText(Double.toString(d));
-                setDisplayAndClearMemory(display.getText());
-            }
-            else if (in.equals("!")) {
-                long l = ScientificFunctions.factorial(Integer.parseInt(display.getText()));
-                display.setText(Long.toString(l));
-                setDisplayAndClearMemory(display.getText());
-            }
-            // else if operand2 is empty
+                if (in.equals("sin()") || in.equals("cos()") || in.equals("tan()") || in.charAt(0) == 'a'
+                        || in.charAt(0) == 'i' || in.charAt(0) == 'l' || in.equals("sqrt") || in.equals("x^2")) {
+                    double d = switch (in) {
+                        case "sin()" -> ScientificFunctions.sin(Double.parseDouble(display.getText()), units);
+                        case "cos()" -> ScientificFunctions.cos(Double.parseDouble(display.getText()), units);
+                        case "tan()" -> ScientificFunctions.tan(Double.parseDouble(display.getText()), units);
+                        case "asin()" -> ScientificFunctions.asin(Double.parseDouble(display.getText()), units);
+                        case "acos()" -> ScientificFunctions.acos(Double.parseDouble(display.getText()), units);
+                        case "atan()" -> ScientificFunctions.atan(Double.parseDouble(display.getText()), units);
+                        case "log" -> ScientificFunctions.log(Double.parseDouble(display.getText()));
+                        case "ilog" -> ScientificFunctions.inverseLog(Double.parseDouble(display.getText()));
+                        case "ln" -> ScientificFunctions.naturalLog(Double.parseDouble(display.getText()));
+                        case "iln" -> ScientificFunctions.inverseNaturalLog(Double.parseDouble(display.getText()));
+                        case "sqrt" -> BasicFunctions.sqrt(Double.parseDouble(display.getText()));
+                        case "inv" -> BasicFunctions.inverse(Double.parseDouble(display.getText()));
+                        case "x^2" -> BasicFunctions.square(Double.parseDouble(display.getText()));
+                        default -> 0.00;
+                    };
+                    display.setText(Double.toString(d));
+                    setDisplayAndClearMemory(display.getText());
+                } else if (in.equals("!")) {
+                    try {
+                        long l = ScientificFunctions.factorial(Integer.parseInt(display.getText()));
+                        display.setText(Long.toString(l));
+                        setDisplayAndClearMemory(display.getText());
+                    } catch (Exception err) {
+                        setDisplayAndClearMemory("Error");
+                    }
+
+                }
+                // else if operand2 is empty
                 // set the operator to corresponding value
                 // e.g. 2 ?
-            else if (operand2.equals("")) {
-                operator = in;
-            }
-            // else (you hit a second two-sided operator with two numbers stored!)
-            else if (operand3.equals("")) {
-                // 2 + 3 ?
-                // if second operator is same or less in priority
-                    // display the two-sided math based on what's already stored in operator
-                        // set operator to input
-                        // set operand to what's on display
-                        // clear the operator2 and operand2
-                        // 2 + 3 * 5
-                        // 2 + 3 ^ 5
-                if ((operator2.equals("^")) ||
-                        (((operator2.equals("*")) || (operator2.equals("/"))) && ((!operator.equals("+")) && (!operator.equals("-")))) ||
-                        ( (operator2.equals("+")) || (operator2.equals("-")) )
-                        ) {
-                    display.setText(twoSidedMath(operand, operator, operand2));
-                    operand = display.getText();
+                else if (operand2.equals("")) {
                     operator = in;
-                    operand2 = "";
-                    operator2 = "";
                 }
-                // else (second operator has order priority)
-                    // stores the second operator
-                else {
-                    operator2 = in;
-                }
-            }
-            else { // 2 + 3 * 4 ?
-                if (in.equals("^")) {
-                    operator3 = in;
-                }
-                else {
-                    if (in.equals("*") || in.equals("/")) {
-                        // 2 + 3 * 4 *
-                        operand2 = twoSidedMath(operand2, operator2, operand3);
-                        operator2 = in;
-                        display.setText(operand2);
-                        operand3 = "";
-                    }
-                    else {
-                        // 2 + 3 * 4 +
-                        operand = twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3));
+                // else (you hit a second two-sided operator with two numbers stored!)
+                else if (operand3.equals("")) {
+                    // 2 + 3 ?
+                    // if second operator is same or less in priority
+                    // display the two-sided math based on what's already stored in operator
+                    // set operator to input
+                    // set operand to what's on display
+                    // clear the operator2 and operand2
+                    // 2 + 3 * 5
+                    // 2 + 3 ^ 5
+                    if ((operator2.equals("^")) ||
+                            (((operator2.equals("*")) || (operator2.equals("/"))) && ((!operator.equals("+")) && (!operator.equals("-")))) ||
+                            ((operator2.equals("+")) || (operator2.equals("-")))
+                    ) {
+                        display.setText(twoSidedMath(operand, operator, operand2));
+                        operand = display.getText();
                         operator = in;
-                        display.setText(operand);
                         operand2 = "";
-                        operand3 = "";
                         operator2 = "";
+                    }
+                    // else (second operator has order priority)
+                    // stores the second operator
+                    else {
+                        operator2 = in;
+                    }
+                } else { // 2 + 3 * 4 ?
+                    if (in.equals("^")) {
+                        operator3 = in;
+                    } else {
+                        if (in.equals("*") || in.equals("/")) {
+                            // 2 + 3 * 4 *
+                            operand2 = twoSidedMath(operand2, operator2, operand3);
+                            operator2 = in;
+                            display.setText(operand2);
+                            operand3 = "";
+                        } else {
+                            // 2 + 3 * 4 +
+                            operand = twoSidedMath(operand, operator, twoSidedMath(operand2, operator2, operand3));
+                            operator = in;
+                            display.setText(operand);
+                            operand2 = "";
+                            operand3 = "";
+                            operator2 = "";
+                        }
                     }
                 }
             }
         }
-
     }
 }
