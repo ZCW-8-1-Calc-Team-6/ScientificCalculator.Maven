@@ -123,13 +123,13 @@ public class sciCalcTests {
         assertEquals(2, ScientificFunctions.factorial(2));
     }
 
-//    @Test
-//    void getTextFromField() {
-//        String calculator = new MainApplication().getTextField();
-//        String expectedResults = "0";
-//
-//        assertEquals(expectedResults, calculator);
-//    }
+    @Test
+    void getTextFromField() {
+        String calculator = new MainApplication().getTextField();
+        String expectedResults = "0";
+
+        assertEquals(expectedResults, calculator);
+    }
 
 //    @Test
 //    void testSwitchUnitMode() {
