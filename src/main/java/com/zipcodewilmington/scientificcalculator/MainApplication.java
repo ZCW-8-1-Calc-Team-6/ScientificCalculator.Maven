@@ -606,31 +606,35 @@ public class MainApplication implements ActionListener {
         }
         /////////////////////////
         /////////////////////////
-        // CLEAR SIGN
+        // MEMORY
         /////////////////////////
         /////////////////////////
         else if (in.charAt(0) == 'm') {
-            switch (in) {
-                case "m+" : memory = Double.toString(Double.parseDouble(memory) + Double.parseDouble(getTextField()));
-                    break;
-                case "m-" : memory = Double.toString(Double.parseDouble(memory) - Double.parseDouble(getTextField()));
-                    break;
-                case "mr" : {
-                    display.setText(memory);
-                    if (operator.equals("")) {
-                        operand = memory;
+            if  (!display.getText().equals("Error") && !display.getText().equals("Infinity")) {
+                switch (in) {
+                    case "m+":
+                        memory = Double.toString(Double.parseDouble(memory) + Double.parseDouble(getTextField()));
+                        break;
+                    case "m-":
+                        memory = Double.toString(Double.parseDouble(memory) - Double.parseDouble(getTextField()));
+                        break;
+                    case "mr": {
+                        display.setText(memory);
+                        if (operator.equals("")) {
+                            operand = memory;
+                        } else if (operator2.equals("")) {
+                            operand2 = memory;
+                        } else if (operator3.equals("")) {
+                            operand3 = memory;
+                        } else {
+                            operand4 = memory;
+                        }
+                        break;
                     }
-                    else if (operator2.equals("")) {
-                        operand2 = memory;
-                    }
-                    else if (operator3.equals("")) {
-                        operand3 = memory;
-                    }
-                    else { operand4 = memory; }
-                    break;
+                    case "mc":
+                        memory = "0.0";
+                        break;
                 }
-                case "mc" : memory = "0.0";
-                    break;
             }
         }
         /////////////////////////
