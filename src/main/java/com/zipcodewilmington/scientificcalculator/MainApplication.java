@@ -15,7 +15,8 @@ public class MainApplication implements ActionListener {
             buttonFive, buttonSix, buttonSeven, buttonEight, buttonNine, buttonPlus, buttonMinus, buttonMultiply,
             buttonDivide, buttonSin, buttonRad, buttonCos, buttonTan, buttonASin, buttonACos, buttonATan,
             buttonFactorial, buttonLog, buttonILog, buttonLogN, buttonILogN, buttonInvertSign, buttonSqrt,
-            buttonYellow, buttonMint, buttonSkyBlue, buttonLavender, buttonPow, buttonInverse, buttonSquare;
+            buttonYellow, buttonMint, buttonSkyBlue, buttonLavender, buttonPow, buttonInverse, buttonSquare,
+            buttonMemoryAdd, buttonMemoryClear, buttonMemorySubtract, buttonMemoryRetrieve;
 
     Color gray = new Color(60,60,60);
     Color softYellow = new Color(232, 212, 142);
@@ -31,6 +32,7 @@ public class MainApplication implements ActionListener {
     String operator = "";
     String operator2 = "";
     String operator3 = "";
+    String memory = "";
     String units = "degrees";
     public static void main(String[] args) {
         new MainApplication();
@@ -83,6 +85,10 @@ public class MainApplication implements ActionListener {
         buttonMint = new JButton("MI");
         buttonSkyBlue = new JButton("SK");
         buttonLavender = new JButton("LA");
+        buttonMemoryAdd = new JButton("m+");
+        buttonMemoryClear = new JButton("mc");
+        buttonMemoryRetrieve = new JButton("mr");
+        buttonMemorySubtract = new JButton("m-");
 
         // here
         GridBagLayout gbl = new GridBagLayout();
@@ -211,13 +217,29 @@ public class MainApplication implements ActionListener {
 
         c.gridy = 9;
         c.gridx = 0;
+        c.gridwidth = 2;
         gbl.setConstraints(buttonInverse, c);
         p.add(buttonInverse);
-        c.gridx = 1;
+        c.gridx = 2;
         gbl.setConstraints(buttonSquare, c);
         p.add(buttonSquare);
 
         c.gridy = 10;
+        c.gridx = 0;
+        c.gridwidth = 1;
+        gbl.setConstraints(buttonMemoryAdd, c);
+        p.add(buttonMemoryAdd);
+        c.gridx = 1;
+        gbl.setConstraints(buttonMemorySubtract, c);
+        p.add(buttonMemorySubtract);
+        c.gridx = 2;
+        gbl.setConstraints(buttonMemoryClear, c);
+        p.add(buttonMemoryClear);
+        c.gridx = 3;
+        gbl.setConstraints(buttonMemoryRetrieve, c);
+        p.add(buttonMemoryRetrieve);
+
+        c.gridy = 11;
         c.gridx = 0;
         gbl.setConstraints(buttonYellow, c);
         p.add(buttonYellow);
@@ -270,6 +292,10 @@ public class MainApplication implements ActionListener {
         buttonMint.addActionListener(this);
         buttonSkyBlue.addActionListener(this);
         buttonLavender.addActionListener(this);
+        buttonMemorySubtract.addActionListener(this);
+        buttonMemoryAdd.addActionListener(this);
+        buttonMemoryRetrieve.addActionListener(this);
+        buttonMemoryClear.addActionListener(this);
 
         buttonDecimal.setBorder(calcBorder);
         buttonEquals.setBorder(calcBorder);
@@ -309,6 +335,10 @@ public class MainApplication implements ActionListener {
         buttonSkyBlue.setBorder(calcBorder);
         buttonLavender.setBorder(calcBorder);
         buttonSquare.setBorder(calcBorder);
+        buttonMemoryAdd.setBorder(calcBorder);
+        buttonMemoryRetrieve.setBorder(calcBorder);
+        buttonMemoryClear.setBorder(calcBorder);
+        buttonMemorySubtract.setBorder(calcBorder);
 
         try {
             UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
