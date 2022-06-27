@@ -378,6 +378,9 @@ public class MainApplication implements ActionListener {
     }
 
     public String twoSidedMath(String leftSide, String operator, String rightSide) {
+        if (leftSide.equals("Error") || rightSide.equals("Error") || leftSide.equals("Infinity") || rightSide.equals("Infinity")) {
+            return "Error";
+        }
         double x = Double.parseDouble(leftSide);
         double y = Double.parseDouble(rightSide);
 
@@ -406,7 +409,7 @@ public class MainApplication implements ActionListener {
         ///////////////////////
         if ((in.charAt(0) >= '0' && in.charAt(0) <= '9') || in.equals(".")) {
             // screen says Error?
-            if (display.getText().equals("Error")) {
+            if (display.getText().equals("Error") || display.getText().equals("Infinity")) {
                 if (in.equals(".")) {
                     operand = "0.0";
                 } else {
@@ -520,7 +523,7 @@ public class MainApplication implements ActionListener {
         /////////////////////////
         /////////////////////////
         else if (in.equals("+/-")) {
-            if  (!display.getText().equals("Error")) {
+            if  (!display.getText().equals("Error") && !display.getText().equals("Infinity")) {
                 if (!operand4.equals("")) {
                     operand4 = BasicFunctions.invertSign(Double.parseDouble(operand4));
                     display.setText(operand4);
@@ -542,7 +545,7 @@ public class MainApplication implements ActionListener {
         /////////////////////////
         /////////////////////////
         else if (in.equals("=")) {
-            if  (!display.getText().equals("Error")) {
+            if  (!display.getText().equals("Error") && !display.getText().equals("Infinity")) {
                 // if operator3 is loaded
                 if (!operator3.equals("") && !operand4.equals("")) {
                     // 2 + 3 * 4 ^ 5 =
@@ -590,7 +593,7 @@ public class MainApplication implements ActionListener {
         /////////////////////////
         /////////////////////////
         else {
-            if  (!display.getText().equals("Error")) {
+            if  (!display.getText().equals("Error") && !display.getText().equals("Infinity")) {
                 // if operator takes just 1 double
                 // call the method with whatever is on the display
                 // display the result
