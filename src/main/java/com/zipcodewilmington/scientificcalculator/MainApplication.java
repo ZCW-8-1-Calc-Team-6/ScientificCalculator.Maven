@@ -32,7 +32,7 @@ public class MainApplication implements ActionListener {
     String operator = "";
     String operator2 = "";
     String operator3 = "";
-    String memory = "";
+    String memory = "0.0";
     String units = "degrees";
     public static void main(String[] args) {
         new MainApplication();
@@ -603,6 +603,35 @@ public class MainApplication implements ActionListener {
         /////////////////////////
         else if (in.equals("C")) { // clear selected
             setDisplayAndClearMemory("0");
+        }
+        /////////////////////////
+        /////////////////////////
+        // CLEAR SIGN
+        /////////////////////////
+        /////////////////////////
+        else if (in.charAt(0) == 'm') {
+            switch (in) {
+                case "m+" : memory = Double.toString(Double.parseDouble(memory) + Double.parseDouble(getTextField()));
+                    break;
+                case "m-" : memory = Double.toString(Double.parseDouble(memory) - Double.parseDouble(getTextField()));
+                    break;
+                case "mr" : {
+                    display.setText(memory);
+                    if (operator.equals("")) {
+                        operand = memory;
+                    }
+                    else if (operator2.equals("")) {
+                        operand2 = memory;
+                    }
+                    else if (operator3.equals("")) {
+                        operand3 = memory;
+                    }
+                    else { operand4 = memory; }
+                    break;
+                }
+                case "mc" : memory = "0.0";
+                    break;
+            }
         }
         /////////////////////////
         /////////////////////////
